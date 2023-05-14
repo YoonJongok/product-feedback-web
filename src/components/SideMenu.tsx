@@ -18,13 +18,44 @@ export const SideMenu = () => {
   const [slected, setSelected] = useState('All');
   return (
     <FlexBoxColumn sx={{ gap: 6 }}>
-      {/* <img src={DesktopHeaderImg} alt='Header image' /> */}
-      <Box
-        component='img'
-        sx={{ borderRadius: '10px' }}
-        alt='The house from the offer.'
-        src={DesktopHeaderImg}
-      />
+      <FlexBoxColumn
+        sx={{
+          position: 'relative',
+          justifyContent: 'flex-end',
+          alignItems: 'flex-start',
+          pt: '62px',
+          px: 6,
+          pb: 6,
+        }}
+      >
+        <Box
+          component='img'
+          sx={{
+            position: 'absolute',
+            left: 0,
+            bottom: 0,
+            width: '100%',
+            borderRadius: '10px',
+          }}
+          alt='The house from the offer.'
+          src={DesktopHeaderImg}
+        />
+
+        <Typography
+          variant='medium-02-bold'
+          sx={{ zIndex: 10, textTransform: 'capitalize', color: themeColors.white }}
+        >
+          frontend mentor
+        </Typography>
+
+        <Typography
+          variant='small-02-regular'
+          sx={{ zIndex: 10, textTransform: 'capitalize', color: themeColors.white }}
+        >
+          Feedback board
+        </Typography>
+      </FlexBoxColumn>
+
       <FlexBoxRow
         sx={{
           flexWrap: 'wrap',
