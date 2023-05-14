@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { FlexBoxColumn } from './FlexBox/FlexBoxcolumn';
-import { Box, Chip, ImageListItem, Typography } from '@mui/material';
+import { Box, Chip, Typography } from '@mui/material';
 import { FlexBoxRow } from './FlexBox/FlexBoxRow';
 import DesktopHeaderImg from '../assets/suggestions/desktop/background-header.png';
-import TabletHeaderImg from '../assets/suggestions/tablet/background-header.png';
-import MobileHeaderImg from '../assets/suggestions/mobile/background-header.png';
+
 import { themeColors } from '../theme/colors';
 
 const filterConfig = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'];

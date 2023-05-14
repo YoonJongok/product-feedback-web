@@ -197,7 +197,7 @@ export const theme = createTheme({
     values: {
       mobile: 375,
       tablet: 768,
-      desktop: 1440,
+      desktop: 1260,
     },
   },
   components: {
@@ -208,10 +208,14 @@ export const theme = createTheme({
     },
     MuiButton: {
       styleOverrides: {
-        contained: {
+        root: {
           border: 'none',
           borderRadius: '10px',
           textTransform: 'capitalize',
+          color: themeColors.white,
+          padding: '12px 24px',
+          fontSize: '14px',
+          fontWeight: 700,
         },
       },
       variants: [
