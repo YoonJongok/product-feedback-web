@@ -1,18 +1,7 @@
-import { ReactComponent as Plus } from './assets/shared/icon-arrow-left.svg';
-import { Button } from '@mui/material';
-import { FlexBoxColumn } from './components/FlexBox/FlexBoxcolumn';
+import { Router } from './pages/Router';
 
 function App() {
-  return (
-    <div>
-      <Plus />
-      <FlexBoxColumn>
-        <h1>hi</h1>
-        <h3>bye</h3>
-      </FlexBoxColumn>
-      <Button variant='containdPurple'>hi hihi</Button>
-    </div>
-  );
+  return <Router />;
 }
 
 export default App;

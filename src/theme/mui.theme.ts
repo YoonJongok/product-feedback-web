@@ -1,6 +1,18 @@
 import { createTheme } from '@mui/material';
 import { themeColors } from './colors';
 
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    xs: false;
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    mobile: true;
+    tablet: true;
+    desktop: true;
+  }
+}
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     containdPurple: true;
@@ -181,6 +193,13 @@ export const theme = createTheme({
     },
   },
   spacing: 4,
+  breakpoints: {
+    values: {
+      mobile: 375,
+      tablet: 768,
+      desktop: 1440,
+    },
+  },
   components: {
     MuiCssBaseline: {
       styleOverrides: {
