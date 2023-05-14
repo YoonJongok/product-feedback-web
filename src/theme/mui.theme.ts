@@ -322,14 +322,15 @@ export const theme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: {
-          '& .MuiChip-label': {
-            fontSize: '12px',
-            lineHeight: '16px',
-            fontWeight: 400,
-          },
+          backgroundColor: themeColors.greyBlue200,
+          padding: '6px 12px',
+          fontSize: '14px',
+          color: themeColors.blue200,
+          fontWeight: 700,
         },
       },
     },
+
     MuiTable: {
       styleOverrides: {
         root: {

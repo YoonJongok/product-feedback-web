@@ -1,5 +1,6 @@
 import Grid from '@mui/material/Unstable_Grid2';
 import { Paper, styled } from '@mui/material';
+import { SideMenu } from '../components/SideMenu';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,7 +20,7 @@ export const Home = () => {
       }}
     >
       <Grid desktop={3}>
-        <Item>xs=6 md=4</Item>
+        <SideMenu />
       </Grid>
       <Grid desktop={9}>
         <Item>xs=6 md=8</Item>

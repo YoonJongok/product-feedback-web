@@ -1,14 +1,14 @@
 import React from 'react';
 import { FlexBoxColumn } from './components/FlexBox/FlexBoxcolumn';
 import { Outlet } from 'react-router-dom';
+import { themeColors } from './theme/colors';
 
 export const Layout = ({ children }: React.PropsWithChildren) => {
   return (
     <FlexBoxColumn
       sx={{
-        height: '100%',
         minHeight: '100vh',
-        py: '50px',
+        backgroundColor: themeColors.greyBlue200,
       }}
     >
       <Outlet />
