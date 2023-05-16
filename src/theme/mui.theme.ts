@@ -216,19 +216,28 @@ export const theme = createTheme({
           padding: '12px 24px',
           fontSize: '14px',
           fontWeight: 700,
+          boxShadow: 'none',
+          ':hover': {
+            boxShadow: 'none',
+          },
         },
       },
       variants: [
         {
           props: { variant: 'contained', color: 'primary' },
           style: {
-            backgroundColor: themeColors.blue200,
+            backgroundColor: themeColors.greyBlue200,
+            color: themeColors.blue300,
+            ':hover': {
+              backgroundColor: themeColors.greyBlue300,
+            },
           },
         },
         {
           props: { variant: 'contained', color: 'secondary' },
           style: {
-            backgroundColor: themeColors.blue300,
+            backgroundColor: themeColors.blue200,
+            color: themeColors.blue300,
           },
         },
         {

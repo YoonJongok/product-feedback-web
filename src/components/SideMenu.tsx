@@ -111,7 +111,7 @@ export const SideMenu = () => {
                   }}
                 ></Box>
                 <Typography
-                  color={themeColors.greyBlue300}
+                  color={themeColors.greyBlue400}
                   sx={{
                     lineHeight: '0px',
                     fontSize: '16px',
@@ -120,7 +120,7 @@ export const SideMenu = () => {
                   {config.key}
                 </Typography>
               </FlexBoxRow>
-              <Typography variant='medium-00-bold' color={themeColors.greyBlue300}>
+              <Typography variant='medium-00-bold' color={themeColors.greyBlue400}>
                 2
               </Typography>
             </FlexBoxRow>

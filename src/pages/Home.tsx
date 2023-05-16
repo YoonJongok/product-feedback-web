@@ -95,7 +95,7 @@ export const Home = () => {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     color:
-                      selectedSort === sortType ? themeColors.purple200 : themeColors.greyBlue300,
+                      selectedSort === sortType ? themeColors.purple200 : themeColors.greyBlue400,
                   }}
                 >
                   {sortType} {selectedSort === sortType && <CheckIcon />}
@@ -107,7 +107,11 @@ export const Home = () => {
           <Button variant='containdPurple'>Add Feedback</Button>
         </FlexBoxRow>
 
-        <FlexBoxRow sx={{ backgroundColor: themeColors.white }}> hihihihi</FlexBoxRow>
+        <FlexBoxRow sx={{ px: 8, py: 7, borderRadius: '10px', backgroundColor: themeColors.white }}>
+          <Button variant='contained' color='primary'>
+            Add Feedback
+          </Button>
+        </FlexBoxRow>
       </Grid>
     </Grid>
   );
