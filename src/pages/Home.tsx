@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { FlexBoxColumn } from '../components/FlexBox/FlexBoxcolumn';
+import { FeedbackCard } from '../components/Feedback/FeedbackCard';
 
 const sortByConfig = ['Most Upvotes', 'Least Upvotes', 'Most Comments', 'Least Comments'];
 
@@ -67,6 +68,7 @@ export const Home = () => {
               value={selectedSort}
               onChange={handleChange}
               input={<OutlinedInput />}
+              variant='standard'
               renderValue={(selected) => (
                 <Typography
                   variant='small-01-light'
@@ -109,53 +111,9 @@ export const Home = () => {
 
           <Button variant='containdPurple'>Add Feedback</Button>
         </FlexBoxRow>
-
-        <FlexBoxRow
-          sx={{
-            justifyContent: 'space-between',
-            px: 8,
-            py: 7,
-            borderRadius: '10px',
-            backgroundColor: themeColors.white,
-          }}
-        >
-          <FlexBoxRow justifyContent={'flex-start'} alignItems={'flex-start'} gap={10}>
-            <Button
-              variant='vote'
-              color='primary'
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-                gap: 2,
-              }}
-            >
-              <ChevronUpIcon /> 3
-            </Button>
-            <FlexBoxColumn>
-              <Typography variant='medium-01-bold' sx={{ color: themeColors.blue300 }}>
-                hihi
-              </Typography>
-              <Typography variant='medium-00-regular' sx={{ color: themeColors.greyBlue400 }}>
-                Images and screencasts can enhance comments on solutions.
-              </Typography>
-              <Button
-                variant='contained'
-                color='primary'
-                sx={{ color: themeColors.blue200, padding: '6px 16px', mt: 3, fontWeight: 500 }}
-              >
-                Feature
-              </Button>
-            </FlexBoxColumn>
-          </FlexBoxRow>
-          <FlexBoxRow alignItems={'center'} gap={2}>
-            <CommentIcon />
-            <Typography variant='medium-01-bold' sx={{ color: themeColors.greyBlue400, pt: '3px' }}>
-              1
-            </Typography>
-          </FlexBoxRow>
-        </FlexBoxRow>
+        {[0, 0, 0, 0, 0].map((_, index) => (
+          <FeedbackCard key={index} />
+        ))}
       </Grid>
     </Grid>
   );
