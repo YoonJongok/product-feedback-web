@@ -354,6 +354,9 @@ export const theme = createTheme({
           fontSize: '14px',
           color: themeColors.blue200,
           fontWeight: 700,
+          ':hover': {
+            backgroundColor: themeColors.greyBlue300,
+          },
         },
       },
     },
