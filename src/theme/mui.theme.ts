@@ -210,6 +210,7 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
+          width: 'fit-content',
           border: 'none',
           borderRadius: '10px',
           textTransform: 'capitalize',

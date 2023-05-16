@@ -4,7 +4,8 @@ import { FlexBoxRow } from '../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../theme/colors';
 import { ReactComponent as SuggestionIcon } from '../assets/suggestions/icon-suggestions.svg';
 import { ReactComponent as CheckIcon } from '../assets/shared/icon-check.svg';
-import { ReactComponent as ChevronUp } from '../assets/shared/icon-arrow-up.svg';
+import { ReactComponent as ChevronUpIcon } from '../assets/shared/icon-arrow-up.svg';
+import { ReactComponent as CommentIcon } from '../assets/shared/icon-comments.svg';
 import {
   Button,
   MenuItem,
@@ -14,6 +15,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
+import { FlexBoxColumn } from '../components/FlexBox/FlexBoxcolumn';
 
 const sortByConfig = ['Most Upvotes', 'Least Upvotes', 'Most Comments', 'Least Comments'];
 
@@ -108,20 +110,51 @@ export const Home = () => {
           <Button variant='containdPurple'>Add Feedback</Button>
         </FlexBoxRow>
 
-        <FlexBoxRow sx={{ px: 8, py: 7, borderRadius: '10px', backgroundColor: themeColors.white }}>
-          <Button
-            variant='vote'
-            color='primary'
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              gap: 2,
-            }}
-          >
-            <ChevronUp />3
-          </Button>
+        <FlexBoxRow
+          sx={{
+            justifyContent: 'space-between',
+            px: 8,
+            py: 7,
+            borderRadius: '10px',
+            backgroundColor: themeColors.white,
+          }}
+        >
+          <FlexBoxRow justifyContent={'flex-start'} alignItems={'flex-start'} gap={10}>
+            <Button
+              variant='vote'
+              color='primary'
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+                gap: 2,
+              }}
+            >
+              <ChevronUpIcon /> 3
+            </Button>
+            <FlexBoxColumn>
+              <Typography variant='medium-01-bold' sx={{ color: themeColors.blue300 }}>
+                hihi
+              </Typography>
+              <Typography variant='medium-00-regular' sx={{ color: themeColors.greyBlue400 }}>
+                Images and screencasts can enhance comments on solutions.
+              </Typography>
+              <Button
+                variant='contained'
+                color='primary'
+                sx={{ color: themeColors.blue200, padding: '6px 16px', mt: 3, fontWeight: 500 }}
+              >
+                Feature
+              </Button>
+            </FlexBoxColumn>
+          </FlexBoxRow>
+          <FlexBoxRow alignItems={'center'} gap={2}>
+            <CommentIcon />
+            <Typography variant='medium-01-bold' sx={{ color: themeColors.greyBlue400, pt: '3px' }}>
+              1
+            </Typography>
+          </FlexBoxRow>
         </FlexBoxRow>
       </Grid>
     </Grid>
