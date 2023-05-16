@@ -16,6 +16,7 @@ declare module '@mui/material/styles' {
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     containdPurple: true;
+    vote: true;
   }
 }
 declare module '@mui/material/styles' {
@@ -237,7 +238,7 @@ export const theme = createTheme({
           props: { variant: 'contained', color: 'secondary' },
           style: {
             backgroundColor: themeColors.blue200,
-            color: themeColors.blue300,
+            color: themeColors.white,
           },
         },
         {
@@ -252,6 +253,18 @@ export const theme = createTheme({
             backgroundColor: themeColors.purple200,
             '&:hover': {
               backgroundColor: themeColors.purple100,
+            },
+          },
+        },
+        {
+          props: { variant: 'vote', color: 'primary' },
+          style: {
+            minWidth: '40px',
+            padding: '12px 8px 8px',
+            backgroundColor: themeColors.greyBlue200,
+            color: themeColors.blue300,
+            ':hover': {
+              backgroundColor: themeColors.greyBlue300,
             },
           },
         },

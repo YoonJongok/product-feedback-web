@@ -4,6 +4,7 @@ import { FlexBoxRow } from '../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../theme/colors';
 import { ReactComponent as SuggestionIcon } from '../assets/suggestions/icon-suggestions.svg';
 import { ReactComponent as CheckIcon } from '../assets/shared/icon-check.svg';
+import { ReactComponent as ChevronUp } from '../assets/shared/icon-arrow-up.svg';
 import {
   Button,
   MenuItem,
@@ -108,8 +109,18 @@ export const Home = () => {
         </FlexBoxRow>
 
         <FlexBoxRow sx={{ px: 8, py: 7, borderRadius: '10px', backgroundColor: themeColors.white }}>
-          <Button variant='contained' color='primary'>
-            Add Feedback
+          <Button
+            variant='vote'
+            color='primary'
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              gap: 2,
+            }}
+          >
+            <ChevronUp />3
           </Button>
         </FlexBoxRow>
       </Grid>
