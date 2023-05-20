@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { AsyncThunkStatus } from '../store.types';
 
 export const commentSchema = z.object({
   id: z.number(),
@@ -22,4 +23,9 @@ export const ProductSchema = z.object({
 
 export type Comment = z.infer<typeof commentSchema>;
 export type Product = z.infer<typeof ProductSchema>;
+
+export type ProductState = {
+  products?: Product[];
+  status: AsyncThunkStatus;
+};
 
