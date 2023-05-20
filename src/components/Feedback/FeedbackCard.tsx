@@ -5,8 +5,13 @@ import { Button, Typography } from '@mui/material';
 import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
 import { ReactComponent as ChevronUpIcon } from '../../assets/shared/icon-arrow-up.svg';
 import { ReactComponent as CommentIcon } from '../../assets/shared/icon-comments.svg';
+import { Product } from '../../store/products/products.types';
 
-export const FeedbackCard = () => {
+interface FeedbackCardProps {
+  product: Product;
+}
+
+export const FeedbackCard = ({ product }: FeedbackCardProps) => {
   return (
     <FlexBoxRow
       sx={{
@@ -30,28 +35,28 @@ export const FeedbackCard = () => {
             gap: 2,
           }}
         >
-          <ChevronUpIcon /> 3
+          <ChevronUpIcon /> {product.upvotes}
         </Button>
         <FlexBoxColumn>
           <Typography variant='medium-01-bold' sx={{ color: themeColors.blue300 }}>
-            hihi
+            {product.title}
           </Typography>
           <Typography variant='medium-00-regular' sx={{ color: themeColors.greyBlue400 }}>
-            Images and screencasts can enhance comments on solutions.
+            {product.description}
           </Typography>
           <Button
             variant='contained'
             color='primary'
             sx={{ color: themeColors.blue200, padding: '6px 16px', mt: 3, fontWeight: 500 }}
           >
-            Feature
+            {product.category}
           </Button>
         </FlexBoxColumn>
       </FlexBoxRow>
       <FlexBoxRow alignItems={'center'} gap={2}>
         <CommentIcon />
         <Typography variant='medium-01-bold' sx={{ color: themeColors.greyBlue400, pt: '3px' }}>
-          1
+          {product.comments && !!product.comments.length ? product.comments.length : 0}
         </Typography>
       </FlexBoxRow>
     </FlexBoxRow>

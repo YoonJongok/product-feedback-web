@@ -13,9 +13,9 @@ import {
   Typography,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchProducts, productsSelector } from '../store/products/products.slice';
+import { FeedbackCard } from '../components/Feedback/FeedbackCard';
 
 const sortByConfig = ['Most Upvotes', 'Least Upvotes', 'Most Comments', 'Least Comments'];
 
@@ -25,7 +25,7 @@ export const Home = () => {
   const [selectedSort, setSelectedSort] = useState<string>(sortByConfig[0]);
 
   const { status, error, products } = useAppSelector(productsSelector);
-  console.log(products);
+
   const loading = status === 'loading' || status === 'idle';
   const isSuccess = status === 'succeeded' && products;
 
@@ -121,7 +121,8 @@ export const Home = () => {
 
           <Button variant='containdPurple'>Add Feedback</Button>
         </FlexBoxRow>
-        {/* {isSuccess && products.map((_, index) => <FeedbackCard key={index} />)} */}
+        {isSuccess &&
+          products.map((product, index) => <FeedbackCard key={index} product={product} />)}
       </Grid>
     </Grid>
   );

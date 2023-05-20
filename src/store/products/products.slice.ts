@@ -1,11 +1,11 @@
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { Product, ProductState } from './products.types';
 import productsApi from '../../api/products';
 import { createAppAsyncThunk } from '../hooks';
 import { FETCH_PRODUCTS } from '../store.types';
 
-export const fetchProducts = createAsyncThunk(FETCH_PRODUCTS, async () => {
+export const fetchProducts = createAppAsyncThunk(FETCH_PRODUCTS, async () => {
   return await productsApi.getProducts();
 });
 
