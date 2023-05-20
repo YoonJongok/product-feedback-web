@@ -18,7 +18,9 @@ const initialState: ProductState = {
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    clearProductsState: () => initialState,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -35,7 +37,7 @@ export const productsSlice = createSlice({
   },
 });
 
-// export const {} = productsSlice.actions;
+export const { clearProductsState } = productsSlice.actions;
 
 export const productsSelector = (state: RootState) => state.products;
 

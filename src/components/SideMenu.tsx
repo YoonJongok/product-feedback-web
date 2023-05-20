@@ -5,15 +5,22 @@ import { FlexBoxRow } from './FlexBox/FlexBoxRow';
 import DesktopHeaderImg from '../assets/suggestions/desktop/background-header.png';
 import { themeColors } from '../theme/colors';
 import { Roadmap } from './SideMenu/Roadmap';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { Filter } from '../store/filters/filters.types';
+import { filtersSelecter, setFilter } from '../store/filters/filters.slice';
 
-type Filter = 'All' | 'UI' | 'UX' | 'Enhancement' | 'Bug' | 'Feature';
 const filterConfig: Filter[] = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
 
 export const SideMenu = () => {
-  const [slected, setSelected] = useState<Filter>('All');
+  const dispatch = useAppDispatch();
+  const { filter } = useAppSelector(filtersSelecter);
+  console.log({ filter });
+
+  const [slected, setSelected] = useState<Filter>(filter || 'All');
 
   const handleFilterChipClick = (filter: Filter) => {
     setSelected(filter);
+    dispatch(setFilter(filter));
   };
 
   return (
