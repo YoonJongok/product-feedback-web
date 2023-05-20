@@ -4,8 +4,6 @@ import { FlexBoxRow } from '../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../theme/colors';
 import { ReactComponent as SuggestionIcon } from '../assets/suggestions/icon-suggestions.svg';
 import { ReactComponent as CheckIcon } from '../assets/shared/icon-check.svg';
-import { ReactComponent as ChevronUpIcon } from '../assets/shared/icon-arrow-up.svg';
-import { ReactComponent as CommentIcon } from '../assets/shared/icon-comments.svg';
 import {
   Button,
   MenuItem,
@@ -14,18 +12,30 @@ import {
   SelectChangeEvent,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
-import { FlexBoxColumn } from '../components/FlexBox/FlexBoxcolumn';
-import { FeedbackCard } from '../components/Feedback/FeedbackCard';
+import { useEffect, useState } from 'react';
+
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { fetchProducts, productsSelector } from '../store/products/products.slice';
 
 const sortByConfig = ['Most Upvotes', 'Least Upvotes', 'Most Comments', 'Least Comments'];
 
 export const Home = () => {
+  const dispatch = useAppDispatch();
+
   const [selectedSort, setSelectedSort] = useState<string>(sortByConfig[0]);
+
+  const { status, error, products } = useAppSelector(productsSelector);
+  console.log(products);
+  const loading = status === 'loading' || status === 'idle';
+  const isSuccess = status === 'succeeded' && products;
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     setSelectedSort(event.target.value as string);
   };
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
 
   return (
     <Grid
@@ -111,9 +121,7 @@ export const Home = () => {
 
           <Button variant='containdPurple'>Add Feedback</Button>
         </FlexBoxRow>
-        {[0, 0, 0, 0, 0].map((_, index) => (
-          <FeedbackCard key={index} />
-        ))}
+        {/* {isSuccess && products.map((_, index) => <FeedbackCard key={index} />)} */}
       </Grid>
     </Grid>
   );

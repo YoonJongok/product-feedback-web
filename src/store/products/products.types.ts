@@ -1,14 +1,23 @@
-import { z } from 'zod';
+import { ZodError, z } from 'zod';
 import { AsyncThunkStatus } from '../store.types';
+
+export const userSchema = z.object({
+  image: z.string(),
+  name: z.string(),
+  username: z.string(),
+});
+
+export const replySchema = z.object({
+  content: z.string(),
+  replyingTo: z.string(),
+  user: userSchema,
+});
 
 export const commentSchema = z.object({
   id: z.number(),
   content: z.string(),
-  user: z.object({
-    image: z.string(),
-    name: z.string(),
-    username: z.string(),
-  }),
+  user: userSchema,
+  replies: z.array(replySchema).optional(),
 });
 
 export const ProductSchema = z.object({
@@ -18,14 +27,17 @@ export const ProductSchema = z.object({
   upvotes: z.number(),
   status: z.string(),
   description: z.string(),
-  comments: z.array(commentSchema),
+  comments: z.array(commentSchema).optional(),
 });
 
+export type User = z.infer<typeof userSchema>;
+export type Reply = z.infer<typeof replySchema>;
 export type Comment = z.infer<typeof commentSchema>;
 export type Product = z.infer<typeof ProductSchema>;
 
 export type ProductState = {
   products?: Product[];
   status: AsyncThunkStatus;
+  error?: string;
 };
 

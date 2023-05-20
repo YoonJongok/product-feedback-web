@@ -1,6 +1,8 @@
 /* eslint-disable quotes */
 
-export const mockProduct = [
+import { Product } from '../../store/products/products.types';
+
+export const mockProduct: Product[] = [
   {
     id: 1,
     title: 'Add tags for solutions',
