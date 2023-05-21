@@ -1,20 +1,19 @@
 import { useState } from 'react';
-import { FlexBoxColumn } from './FlexBox/FlexBoxcolumn';
+import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
 import { Box, Chip, Typography } from '@mui/material';
-import { FlexBoxRow } from './FlexBox/FlexBoxRow';
-import DesktopHeaderImg from '../assets/suggestions/desktop/background-header.png';
-import { themeColors } from '../theme/colors';
-import { Roadmap } from './SideMenu/Roadmap';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { Filter } from '../store/filters/filters.types';
-import { filtersSelecter, setFilter } from '../store/filters/filters.slice';
+import { FlexBoxRow } from '../FlexBox/FlexBoxRow';
+import DesktopHeaderImg from '../../assets/suggestions/desktop/background-header.png';
+import { themeColors } from '../../theme/colors';
+import { Roadmap } from './Roadmap';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { Filter } from '../../store/filters/filters.types';
+import { filtersSelecter, setFilter } from '../../store/filters/filters.slice';
 
 const filterConfig: Filter[] = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
 
 export const SideMenu = () => {
   const dispatch = useAppDispatch();
   const { filter } = useAppSelector(filtersSelecter);
-  console.log({ filter });
 
   const [slected, setSelected] = useState<Filter>(filter || 'All');
 

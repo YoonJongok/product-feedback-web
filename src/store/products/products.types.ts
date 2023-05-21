@@ -1,4 +1,4 @@
-import { ZodError, z } from 'zod';
+import { z } from 'zod';
 import { AsyncThunkStatus } from '../store.types';
 
 export const userSchema = z.object({
