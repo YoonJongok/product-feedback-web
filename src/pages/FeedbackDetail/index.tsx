@@ -1,6 +1,3 @@
-import React from 'react';
+import { FeedbackDetail } from './FeedbackDetail';
 
-export const FeedbackDetail = () => {
-  return <div>FeedbackDetail</div>;
-};
-
+export default FeedbackDetail;

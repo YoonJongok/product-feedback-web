@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { FlexBoxRow } from '../../components/FlexBox/FlexBoxRow';
-import { themeColors } from '../../theme/colors';
+import { FlexBoxRow } from '../../../components/FlexBox/FlexBoxRow';
+import { themeColors } from '../../../theme/colors';
 import {
   Button,
   CircularProgress,
@@ -10,29 +10,14 @@ import {
   SelectChangeEvent,
   Typography,
 } from '@mui/material';
-import { ReactComponent as SuggestionIcon } from '../../assets/suggestions/icon-suggestions.svg';
-import { ReactComponent as CheckIcon } from '../../assets/shared/icon-check.svg';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { fetchProducts, productsSelector } from '../../store/products/products.slice';
-import { FeedbackCard } from '../../components/Feedback/FeedbackCard';
-import { filtersSelecter } from '../../store/filters/filters.slice';
-import { Product } from '../../store/products/products.types';
-import { Filter } from '../../store/filters/filters.types';
-
-const sortByConfig = ['Most Upvotes', 'Least Upvotes', 'Most Comments', 'Least Comments'];
-
-export const filterProducts = (products: Product[], filter: Filter = 'All') => {
-  console.log('filterProducts', filter);
-  if (!products || products.length === 0) return [];
-
-  if (filter === 'All') return products;
-
-  const filteredProducts = products.filter(
-    (product) => product.category.toLowerCase() === filter.toLowerCase()
-  );
-
-  return filteredProducts.length === 0 ? [] : filteredProducts;
-};
+import { ReactComponent as SuggestionIcon } from '../../../assets/suggestions/icon-suggestions.svg';
+import { ReactComponent as CheckIcon } from '../../../assets/shared/icon-check.svg';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { fetchProducts, productsSelector } from '../../../store/products/products.slice';
+import { FeedbackCard } from '../../../components/Feedback/FeedbackCard';
+import { filtersSelecter } from '../../../store/filters/filters.slice';
+import { filterProducts } from './ListProducts.helpers';
+import { sortByConfig } from './ListProducts.config';
 
 export const ListProducts = () => {
   const dispatch = useAppDispatch();

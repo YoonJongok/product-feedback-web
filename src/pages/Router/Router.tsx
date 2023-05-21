@@ -5,8 +5,8 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 import { Layout } from '../../Layout';
-import { Home } from '../Home';
-import { FeedbackDetail } from '../FeedbackDetail';
+import Home from '../Home';
+import FeedbackDetail from '../FeedbackDetail';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
