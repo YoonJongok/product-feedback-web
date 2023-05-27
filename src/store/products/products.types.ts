@@ -27,7 +27,7 @@ export const ProductSchema = z.object({
   upvotes: z.number(),
   status: z.string(),
   description: z.string(),
-  comments: z.array(commentSchema).optional(),
+  comments: z.array(commentSchema),
 });
 
 export type User = z.infer<typeof userSchema>;

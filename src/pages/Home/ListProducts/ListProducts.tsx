@@ -15,33 +15,36 @@ import { ReactComponent as CheckIcon } from '../../../assets/shared/icon-check.s
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { fetchProducts, productsSelector } from '../../../store/products/products.slice';
 import { FeedbackCard } from '../../../components/Feedback/FeedbackCard';
-import { filtersSelecter } from '../../../store/filters/filters.slice';
+import { filtersSelecter, setSortBy } from '../../../store/filters/filters.slice';
 import { filterProducts } from './ListProducts.helpers';
 import { sortByConfig } from './ListProducts.config';
+import { SortBy } from '../../../store/filters/filters.types';
 
 export const ListProducts = () => {
+  const [selectedSort, setSelectedSort] = useState<SortBy>(sortByConfig[0]);
+
   const dispatch = useAppDispatch();
 
   // TODO: error handling with toast
   const { status, error, products } = useAppSelector(productsSelector);
-  const { filter } = useAppSelector(filtersSelecter);
+  const { filter, sortBy } = useAppSelector(filtersSelecter);
 
   const isLoading = status === 'loading' || status === 'idle';
   const isSuccess = status === 'succeeded' && products;
 
   const filteredProducts = useMemo(() => {
-    return isSuccess && filterProducts(products, filter);
-  }, [products, filter, status]);
+    return isSuccess && filterProducts(products, filter, sortBy);
+  }, [products, filter, status, sortBy]);
+
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    const selectedSort = event.target.value as SortBy;
+    setSelectedSort(selectedSort);
+    dispatch(setSortBy(selectedSort));
+  };
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
-
-  const [selectedSort, setSelectedSort] = useState<string>(sortByConfig[0]);
-
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    setSelectedSort(event.target.value as string);
-  };
 
   return (
     <>

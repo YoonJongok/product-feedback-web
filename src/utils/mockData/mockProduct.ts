@@ -30,6 +30,15 @@ export const mockProduct: Product[] = [
           username: 'brawnybrave',
         },
       },
+      {
+        id: 3,
+        content: '333333 Please use fun, color-coded labels to easily identify them at a glance',
+        user: {
+          image: './assets/user-images/image-thomas.jpg',
+          name: 'Thomas Hood',
+          username: 'brawnybrave',
+        },
+      },
     ],
   },
   {
@@ -183,6 +192,7 @@ export const mockProduct: Product[] = [
     upvotes: 3,
     status: 'suggestion',
     description: 'Challenge preview images are missing when you apply a filter.',
+    comments: []
   },
   {
     id: 7,
@@ -280,12 +290,13 @@ export const mockProduct: Product[] = [
     upvotes: 9,
     status: 'in-progress',
     description: 'Screenshots of solutions with animations don’t display correctly.',
+    comments: []
   },
   {
     id: 12,
     title: 'Add micro-interactions',
     category: 'enhancement',
-    upvotes: 71,
+    upvotes: 0,
     status: 'live',
     description: 'Small animations at specific points can add delight.',
     comments: [
