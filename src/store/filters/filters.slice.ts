@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { FiltersState, SortBy } from './filters.types';
-import { Category } from '../products/products.types';
+import { Category } from '../feedbacks/feedbacks.types';
 
 const initialState: FiltersState = {
   filter: 'All',

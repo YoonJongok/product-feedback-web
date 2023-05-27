@@ -1,4 +1,4 @@
-import { Category } from '../products/products.types';
+import { Category } from '../feedbacks/feedbacks.types';
 
 export type SortBy = 'Most Upvotes' | 'Least Upvotes' | 'Most Comments' | 'Least Comments';
 

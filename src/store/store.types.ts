@@ -1,4 +1,4 @@
-export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+export const FETCH_FEEDBACKS = 'FETCH_FEEDBACKS';
 
 export type AsyncThunkStatus = 'idle' | 'loading' | 'succeeded' | 'failed';
 

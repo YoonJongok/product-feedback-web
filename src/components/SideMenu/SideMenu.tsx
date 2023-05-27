@@ -7,7 +7,7 @@ import { themeColors } from '../../theme/colors';
 import { Roadmap } from './Roadmap/Roadmap';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { filtersSelecter, setCategory } from '../../store/filters/filters.slice';
-import { Category } from '../../store/products/products.types';
+import { Category } from '../../store/feedbacks/feedbacks.types';
 
 const filterConfig: Category[] = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
 

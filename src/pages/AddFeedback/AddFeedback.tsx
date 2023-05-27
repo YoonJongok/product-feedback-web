@@ -8,7 +8,7 @@ import { CategorySelect } from './CategorySelect/CategorySelect';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { categorySchema } from '../../store/products/products.types';
+import { categorySchema } from '../../store/feedbacks/feedbacks.types';
 
 const feedbackFormSchema = z.object({
   title: z.string().min(1, { message: 'Title is required' }),

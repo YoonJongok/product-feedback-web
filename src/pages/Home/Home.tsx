@@ -1,6 +1,6 @@
 import Grid from '@mui/material/Unstable_Grid2';
 import SideMenu from '../../components/SideMenu';
-import ListProducts from './ListProducts';
+import ListFeedbacks from './ListFeedbacks';
 
 export const Home = () => {
   return (
@@ -22,7 +22,7 @@ export const Home = () => {
           gap: 6,
         }}
       >
-        <ListProducts />
+        <ListFeedbacks />
       </Grid>
     </Grid>
   );

@@ -4,19 +4,19 @@ import { Button, Skeleton, Typography } from '@mui/material';
 import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
 import { ReactComponent as ChevronUpIcon } from '../../assets/shared/icon-arrow-up.svg';
 import { ReactComponent as CommentIcon } from '../../assets/shared/icon-comments.svg';
-import { Product } from '../../store/products/products.types';
+import { Feedback } from '../../store/feedbacks/feedbacks.types';
 import { useNavigate } from 'react-router-dom';
 
 interface FeedbackCardProps {
-  product: Product;
+  feedback: Feedback;
 }
 
-export const FeedbackCard = ({ product }: FeedbackCardProps) => {
+export const FeedbackCard = ({ feedback }: FeedbackCardProps) => {
   const navigate = useNavigate();
 
   return (
     <FlexBoxRow
-      onClick={() => navigate(`/${product.id}`)}
+      onClick={() => navigate(`/${feedback.id}`)}
       sx={{
         justifyContent: 'space-between',
         px: 8,
@@ -38,28 +38,28 @@ export const FeedbackCard = ({ product }: FeedbackCardProps) => {
             gap: 2,
           }}
         >
-          <ChevronUpIcon /> {product.upvotes}
+          <ChevronUpIcon /> {feedback.upvotes}
         </Button>
         <FlexBoxColumn>
           <Typography variant='medium-01-bold' sx={{ color: themeColors.blue300 }}>
-            {product.title}
+            {feedback.title}
           </Typography>
           <Typography variant='medium-00-regular' sx={{ color: themeColors.greyBlue400 }}>
-            {product.description}
+            {feedback.description}
           </Typography>
           <Button
             variant='contained'
             color='primary'
             sx={{ color: themeColors.blue200, padding: '6px 16px', mt: 3, fontWeight: 500 }}
           >
-            {product.category}
+            {feedback.category}
           </Button>
         </FlexBoxColumn>
       </FlexBoxRow>
       <FlexBoxRow alignItems={'center'} gap={2}>
         <CommentIcon />
         <Typography variant='medium-01-bold' sx={{ color: themeColors.greyBlue400, pt: '3px' }}>
-          {product.comments && !!product.comments.length ? product.comments.length : 0}
+          {feedback.comments && !!feedback.comments.length ? feedback.comments.length : 0}
         </Typography>
       </FlexBoxRow>
     </FlexBoxRow>

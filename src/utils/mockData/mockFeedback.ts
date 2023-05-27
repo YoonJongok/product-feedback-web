@@ -1,8 +1,8 @@
 /* eslint-disable quotes */
 
-import { Product } from '../../store/products/products.types';
+import { Feedback } from '../../store/feedbacks/feedbacks.types';
 
-export const mockProduct: Product[] = [
+export const mockFeedback: Feedback[] = [
   {
     id: 1,
     title: 'Add tags for solutions',

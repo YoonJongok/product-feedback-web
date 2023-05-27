@@ -5,30 +5,30 @@ import { Button, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/ma
 import { ReactComponent as SuggestionIcon } from '../../../assets/suggestions/icon-suggestions.svg';
 import { ReactComponent as CheckIcon } from '../../../assets/shared/icon-check.svg';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { fetchProducts, productsSelector } from '../../../store/products/products.slice';
+import { fetchFeedbacks, feedbacksSelector } from '../../../store/feedbacks/feedbacks.slice';
 import { FeedbackCard } from '../../../components/FeedbackCard/FeedbackCard';
 import { filtersSelecter, setSortBy } from '../../../store/filters/filters.slice';
-import { filterProducts } from './ListProducts.helpers';
-import { sortByConfig } from './ListProducts.config';
+import { filterFeedbacks } from './ListFeedbacks.helpers';
+import { sortByConfig } from './ListFeedbacks.config';
 import { SortBy } from '../../../store/filters/filters.types';
 import { useNavigate } from 'react-router-dom';
 
-export const ListProducts = () => {
+export const ListFeedbacks = () => {
   const [selectedSort, setSelectedSort] = useState<SortBy>(sortByConfig[0]);
 
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
-  const { status, products } = useAppSelector(productsSelector);
+  const { status, feedbacks } = useAppSelector(feedbacksSelector);
   const { filter, sortBy } = useAppSelector(filtersSelecter);
 
   const isLoading = status === 'loading' || status === 'idle';
-  const isSuccess = status === 'succeeded' && products;
+  const isSuccess = status === 'succeeded' && feedbacks;
 
-  const filteredProducts = useMemo(() => {
-    return isSuccess && filterProducts(products, filter, sortBy);
-  }, [products, filter, status, sortBy]);
+  const filteredFeedbacks = useMemo(() => {
+    return isSuccess && filterFeedbacks(feedbacks, filter, sortBy);
+  }, [feedbacks, filter, status, sortBy]);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     const selectedSort = event.target.value as SortBy;
@@ -37,7 +37,7 @@ export const ListProducts = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchFeedbacks());
   }, []);
 
   return (
@@ -109,8 +109,10 @@ export const ListProducts = () => {
         </Button>
       </FlexBoxRow>
       {isLoading && [0, 1, 2].map((_, index) => <FeedbackCard.Skeleton key={index} />)}
-      {filteredProducts &&
-        filteredProducts.map((product, index) => <FeedbackCard key={index} product={product} />)}
+      {filteredFeedbacks &&
+        filteredFeedbacks.map((feedback, index) => (
+          <FeedbackCard key={index} feedback={feedback} />
+        ))}
     </>
   );
 };

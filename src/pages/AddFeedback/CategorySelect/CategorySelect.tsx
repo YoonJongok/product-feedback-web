@@ -5,7 +5,7 @@ import { ReactComponent as ChevronDownIcon } from '../../../assets/shared/icon-a
 import { FlexBoxColumn } from '../../../components/FlexBox/FlexBoxcolumn';
 import { Box, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import { UseFormRegisterReturn, useFormContext } from 'react-hook-form';
-import { Category } from '../../../store/products/products.types';
+import { Category } from '../../../store/feedbacks/feedbacks.types';
 import { FeedbackForm } from '../AddFeedback';
 
 export const categoryConfig: Category[] = ['UI', 'UX', 'Enhancement', 'Bug', 'Feature'];

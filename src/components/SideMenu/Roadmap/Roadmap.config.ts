@@ -1,4 +1,4 @@
-import { Product, Status } from '../../../store/products/products.types';
+import { Feedback, Status } from '../../../store/feedbacks/feedbacks.types';
 import { themeColors } from '../../../theme/colors';
 
 export type RoadmapConfig = { key: Status; bulletColor: string; numOfStatus: number };
@@ -10,12 +10,12 @@ const roadmapConfig: RoadmapConfig[] = [
   { key: 'suggestion', bulletColor: themeColors.greyBlue400, numOfStatus: 0 },
 ];
 
-export const getRoadmapStatuses = (products?: Product[]): RoadmapConfig[] => {
-  if (!products || products.length === 0) return roadmapConfig;
+export const getRoadmapStatuses = (feedbacks?: Feedback[]): RoadmapConfig[] => {
+  if (!feedbacks || feedbacks.length === 0) return roadmapConfig;
 
   const roadmapStatuses = roadmapConfig.map((config) => {
     const { key } = config;
-    const numOfStatus = products.filter((product) => product.status === key).length;
+    const numOfStatus = feedbacks.filter((feedback) => feedback.status === key).length;
     return { ...config, numOfStatus };
   });
 

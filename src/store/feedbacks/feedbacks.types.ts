@@ -24,7 +24,7 @@ export const commentSchema = z.object({
   replies: z.array(replySchema).optional(),
 });
 
-export const ProductSchema = z.object({
+export const FeedbackSchema = z.object({
   id: z.number(),
   title: z.string(),
   category: categorySchema,
@@ -39,10 +39,10 @@ export type Reply = z.infer<typeof replySchema>;
 export type Category = z.infer<typeof categorySchema>;
 export type Status = z.infer<typeof statusSchema>;
 export type Comment = z.infer<typeof commentSchema>;
-export type Product = z.infer<typeof ProductSchema>;
+export type Feedback = z.infer<typeof FeedbackSchema>;
 
-export type ProductState = {
-  products?: Product[];
+export type FeedbackState = {
+  feedbacks?: Feedback[];
   status: AsyncThunkStatus;
   error?: string;
 };

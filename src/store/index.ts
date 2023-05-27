@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { productsSlice } from './products/products.slice';
+import { feedbacksSlice } from './feedbacks/feedbacks.slice';
 import { filtersSlice } from './filters/filters.slice';
 
 const rootReducer = combineReducers({
-  [productsSlice.name]: productsSlice.reducer,
+  [feedbacksSlice.name]: feedbacksSlice.reducer,
   [filtersSlice.name]: filtersSlice.reducer,
 });
 

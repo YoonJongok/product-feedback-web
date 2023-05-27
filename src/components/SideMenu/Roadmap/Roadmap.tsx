@@ -3,21 +3,21 @@ import { FlexBoxRow } from '../../FlexBox/FlexBoxRow';
 import { Box, Skeleton, Typography } from '@mui/material';
 import { themeColors } from '../../../theme/colors';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { fetchProducts, productsSelector } from '../../../store/products/products.slice';
+import { fetchFeedbacks, feedbacksSelector } from '../../../store/feedbacks/feedbacks.slice';
 import { useEffect } from 'react';
 import { getRoadmapStatuses } from './Roadmap.config';
 
 export const Roadmap = () => {
   const dispatch = useAppDispatch();
 
-  const { status, products } = useAppSelector(productsSelector);
+  const { status, feedbacks } = useAppSelector(feedbacksSelector);
 
   const isLoading = status === 'loading' || status === 'idle';
 
-  const roadmapStatusesConfig = getRoadmapStatuses(products);
+  const roadmapStatusesConfig = getRoadmapStatuses(feedbacks);
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchFeedbacks());
   }, []);
 
   return (
