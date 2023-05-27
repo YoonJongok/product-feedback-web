@@ -1,14 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { FlexBoxRow } from '../../../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../../../theme/colors';
-import {
-  Button,
-  MenuItem,
-  OutlinedInput,
-  Select,
-  SelectChangeEvent,
-  Typography,
-} from '@mui/material';
+import { Button, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import { ReactComponent as SuggestionIcon } from '../../../assets/suggestions/icon-suggestions.svg';
 import { ReactComponent as CheckIcon } from '../../../assets/shared/icon-check.svg';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
@@ -64,10 +57,10 @@ export const ListProducts = () => {
             </Typography>
           </FlexBoxRow>
           <Select
+            disableUnderline
             displayEmpty
             value={selectedSort}
             onChange={handleChange}
-            input={<OutlinedInput />}
             variant='standard'
             renderValue={(selected) => (
               <Typography
