@@ -11,9 +11,12 @@ import { filtersSelecter, setSortBy } from '../../../store/filters/filters.slice
 import { filterProducts } from './ListProducts.helpers';
 import { sortByConfig } from './ListProducts.config';
 import { SortBy } from '../../../store/filters/filters.types';
+import { useNavigate } from 'react-router-dom';
 
 export const ListProducts = () => {
   const [selectedSort, setSelectedSort] = useState<SortBy>(sortByConfig[0]);
+
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
@@ -101,7 +104,9 @@ export const ListProducts = () => {
             ))}
           </Select>
         </FlexBoxRow>
-        <Button variant='containdPurple'>Add Feedback</Button>
+        <Button variant='containdPurple' onClick={() => navigate('/add')}>
+          Add Feedback
+        </Button>
       </FlexBoxRow>
       {isLoading && [0, 1, 2].map((_, index) => <FeedbackCard.Skeleton key={index} />)}
       {filteredProducts &&

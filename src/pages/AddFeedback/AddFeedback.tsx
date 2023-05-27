@@ -1,4 +1,3 @@
-import React from 'react';
 import { FlexBoxColumn } from '../../components/FlexBox/FlexBoxcolumn';
 import { FlexBoxRow } from '../../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../../theme/colors';
@@ -6,8 +5,11 @@ import { Button, Typography } from '@mui/material';
 import { ReactComponent as ChevronLeftIcon } from '../../assets/shared/icon-arrow-left.svg';
 import FeedbackInput from '../../components/FeedbackInput';
 import { CategorySelect } from './CategorySelect/CategorySelect';
+import { useNavigate } from 'react-router-dom';
 
 export const AddFeedback = () => {
+  const navigate = useNavigate();
+
   return (
     <FlexBoxColumn
       sx={{
@@ -16,7 +18,10 @@ export const AddFeedback = () => {
         gap: '68px',
       }}
     >
-      <FlexBoxRow sx={{ justifyContent: 'flex-start', alignItems: 'center', gap: '15px' }}>
+      <FlexBoxRow
+        sx={{ justifyContent: 'flex-start', alignItems: 'center', gap: '15px', cursor: 'pointer' }}
+        onClick={() => navigate(-1)}
+      >
         <ChevronLeftIcon style={{ fill: themeColors.blue400 }} />
         <Typography
           variant='small-01-bold'
@@ -60,6 +65,7 @@ export const AddFeedback = () => {
               bgcolor: themeColors.blue400,
               color: themeColors.white,
             }}
+            onClick={() => navigate(-1)}
           >
             Cancel
           </Button>

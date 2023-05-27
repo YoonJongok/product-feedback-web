@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { themeColors } from '../../../theme/colors';
 import { Filter } from '../../../store/filters/filters.types';
 import { ReactComponent as CheckIcon } from '../../../assets/shared/icon-check.svg';
@@ -20,7 +20,6 @@ export const CategorySelect = ({ label, placeholder }: CategorySelectProps) => {
   const handleChange = (event: SelectChangeEvent<string>) => {
     const selectedCategory = event.target.value as Filter;
     setSelectedCategory(selectedCategory);
-    // dispatch(setSortBy(selectedCategory));
   };
 
   return (
