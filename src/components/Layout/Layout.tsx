@@ -1,9 +1,8 @@
-import React from 'react';
 import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
 import { Outlet } from 'react-router-dom';
 import { themeColors } from '../../theme/colors';
 
-export const Layout = ({ children }: React.PropsWithChildren) => {
+export const Layout = () => {
   return (
     <FlexBoxColumn
       sx={{
@@ -11,8 +10,9 @@ export const Layout = ({ children }: React.PropsWithChildren) => {
         backgroundColor: themeColors.greyBlue200,
       }}
     >
-      <Outlet />
-      {children}
+      <FlexBoxColumn sx={{ py: 10 }}>
+        <Outlet />
+      </FlexBoxColumn>
     </FlexBoxColumn>
   );
 };

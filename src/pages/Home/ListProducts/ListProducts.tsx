@@ -3,7 +3,6 @@ import { FlexBoxRow } from '../../../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../../../theme/colors';
 import {
   Button,
-  CircularProgress,
   MenuItem,
   OutlinedInput,
   Select,
@@ -25,8 +24,7 @@ export const ListProducts = () => {
 
   const dispatch = useAppDispatch();
 
-  // TODO: error handling with toast
-  const { status, error, products } = useAppSelector(productsSelector);
+  const { status, products } = useAppSelector(productsSelector);
   const { filter, sortBy } = useAppSelector(filtersSelecter);
 
   const isLoading = status === 'loading' || status === 'idle';
