@@ -1,16 +1,47 @@
-import React from 'react';
-import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
-import { FlexBoxRow } from '../FlexBox/FlexBoxRow';
+import { FlexBoxColumn } from '../../FlexBox/FlexBoxcolumn';
+import { FlexBoxRow } from '../../FlexBox/FlexBoxRow';
 import { Box, Typography } from '@mui/material';
-import { themeColors } from '../../theme/colors';
+import { themeColors } from '../../../theme/colors';
+import { Product, Status } from '../../../store/products/products.types';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { fetchProducts, productsSelector } from '../../../store/products/products.slice';
+import { useEffect } from 'react';
 
-const roadmapConfig = [
-  { key: 'Planned', bulletColor: themeColors.coral },
-  { key: 'In-Progress', bulletColor: themeColors.purple200 },
-  { key: 'Live', bulletColor: themeColors.blue100 },
+export type RoadmapConfig = { key: Status; bulletColor: string; numOfStatus: number };
+
+const roadmapConfig: RoadmapConfig[] = [
+  { key: 'planned', bulletColor: themeColors.coral, numOfStatus: 0 },
+  { key: 'in-progress', bulletColor: themeColors.purple200, numOfStatus: 0 },
+  { key: 'live', bulletColor: themeColors.blue100, numOfStatus: 0 },
+  { key: 'suggestion', bulletColor: themeColors.greyBlue400, numOfStatus: 0 },
 ];
 
+const getRoadmapStatuses = (products: Product[]) => {
+  if (!products || products.length === 0) return roadmapConfig;
+
+  const roadmapStatuses = roadmapConfig.map((config) => {
+    const { key } = config;
+    const numOfStatus = products.filter((product) => product.status === key).length;
+    return { ...config, numOfStatus };
+  });
+
+  return roadmapStatuses;
+};
+
 export const Roadmap = () => {
+  const dispatch = useAppDispatch();
+
+  const { status, error, products } = useAppSelector(productsSelector);
+
+  const isLoading = status === 'loading' || status === 'idle';
+  const isSuccess = status === 'succeeded' && products;
+
+  const roadmapStatuses = isSuccess && getRoadmapStatuses(products);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
+
   return (
     <FlexBoxColumn
       sx={{ gap: 6, px: 6, py: 5, backgroundColor: themeColors.white, borderRadius: '10px' }}

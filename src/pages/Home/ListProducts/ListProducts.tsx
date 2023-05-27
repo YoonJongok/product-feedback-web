@@ -14,7 +14,7 @@ import { ReactComponent as SuggestionIcon } from '../../../assets/suggestions/ic
 import { ReactComponent as CheckIcon } from '../../../assets/shared/icon-check.svg';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { fetchProducts, productsSelector } from '../../../store/products/products.slice';
-import { FeedbackCard } from '../../../components/Feedback/FeedbackCard';
+import { FeedbackCard } from '../../../components/FeedbackCard/FeedbackCard';
 import { filtersSelecter, setSortBy } from '../../../store/filters/filters.slice';
 import { filterProducts } from './ListProducts.helpers';
 import { sortByConfig } from './ListProducts.config';

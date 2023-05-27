@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2';
-import { SideMenu } from '../../components/SideMenu/SideMenu';
+import SideMenu from '../../components/SideMenu';
 import ListProducts from './ListProducts';
 
 export const Home = () => {

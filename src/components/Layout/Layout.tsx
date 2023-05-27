@@ -1,7 +1,7 @@
 import React from 'react';
-import { FlexBoxColumn } from './components/FlexBox/FlexBoxcolumn';
+import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
 import { Outlet } from 'react-router-dom';
-import { themeColors } from './theme/colors';
+import { themeColors } from '../../theme/colors';
 
 export const Layout = ({ children }: React.PropsWithChildren) => {
   return (

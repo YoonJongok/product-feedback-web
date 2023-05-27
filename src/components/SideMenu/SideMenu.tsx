@@ -4,7 +4,7 @@ import { Box, Chip, Typography } from '@mui/material';
 import { FlexBoxRow } from '../FlexBox/FlexBoxRow';
 import DesktopHeaderImg from '../../assets/suggestions/desktop/background-header.png';
 import { themeColors } from '../../theme/colors';
-import { Roadmap } from './Roadmap';
+import { Roadmap } from './Roadmap/Roadmap';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Filter } from '../../store/filters/filters.types';
 import { filtersSelecter, setFilter } from '../../store/filters/filters.slice';

@@ -13,6 +13,8 @@ export const replySchema = z.object({
   user: userSchema,
 });
 
+export const statusSchema = z.enum(['suggestion', 'planned', 'in-progress', 'live']);
+
 export const commentSchema = z.object({
   id: z.number(),
   content: z.string(),
@@ -25,13 +27,14 @@ export const ProductSchema = z.object({
   title: z.string(),
   category: z.string(),
   upvotes: z.number(),
-  status: z.string(),
+  status: statusSchema,
   description: z.string(),
   comments: z.array(commentSchema),
 });
 
 export type User = z.infer<typeof userSchema>;
 export type Reply = z.infer<typeof replySchema>;
+export type Status = z.infer<typeof statusSchema>;
 export type Comment = z.infer<typeof commentSchema>;
 export type Product = z.infer<typeof ProductSchema>;
 
