@@ -6,7 +6,7 @@ export const mockProduct: Product[] = [
   {
     id: 1,
     title: 'Add tags for solutions',
-    category: 'enhancement',
+    category: 'Enhancement',
     upvotes: 112,
     status: 'suggestion',
     description: 'Easier to search for solutions based on a specific stack.',
@@ -44,7 +44,7 @@ export const mockProduct: Product[] = [
   {
     id: 2,
     title: 'Add a dark theme option',
-    category: 'feature',
+    category: 'Feature',
     upvotes: 99,
     status: 'suggestion',
     description: 'It would help people with light sensitivities and who prefer dark mode.',
@@ -96,7 +96,7 @@ export const mockProduct: Product[] = [
   {
     id: 3,
     title: 'Q&A within the challenge hubs',
-    category: 'feature',
+    category: 'Feature',
     upvotes: 65,
     status: 'suggestion',
     description: 'Challenge-specific Q&A would make for easy reference.',
@@ -116,7 +116,7 @@ export const mockProduct: Product[] = [
   {
     id: 4,
     title: 'Add image/video upload to feedback',
-    category: 'enhancement',
+    category: 'Enhancement',
     upvotes: 51,
     status: 'suggestion',
     description: 'Images and screencasts can enhance comments on solutions.',
@@ -146,7 +146,7 @@ export const mockProduct: Product[] = [
   {
     id: 5,
     title: 'Ability to follow others',
-    category: 'feature',
+    category: 'Feature',
     upvotes: 42,
     status: 'suggestion',
     description: 'Stay updated on comments and solutions other people post.',
@@ -188,16 +188,16 @@ export const mockProduct: Product[] = [
   {
     id: 6,
     title: 'Preview images not loading',
-    category: 'bug',
+    category: 'Bug',
     upvotes: 3,
     status: 'suggestion',
     description: 'Challenge preview images are missing when you apply a filter.',
-    comments: []
+    comments: [],
   },
   {
     id: 7,
     title: 'More comprehensive reports',
-    category: 'feature',
+    category: 'Feature',
     upvotes: 123,
     status: 'planned',
     description: 'It would be great to see a more detailed breakdown of solutions.',
@@ -226,7 +226,7 @@ export const mockProduct: Product[] = [
   {
     id: 8,
     title: 'Learning paths',
-    category: 'feature',
+    category: 'Feature',
     upvotes: 28,
     status: 'planned',
     description: 'Sequenced projects for different goals to help people improve.',
@@ -246,7 +246,7 @@ export const mockProduct: Product[] = [
   {
     id: 9,
     title: 'One-click portfolio generation',
-    category: 'feature',
+    category: 'Feature',
     upvotes: 62,
     status: 'in-progress',
     description: 'Add ability to create professional looking portfolio from profile.',
@@ -266,7 +266,7 @@ export const mockProduct: Product[] = [
   {
     id: 10,
     title: 'Bookmark challenges',
-    category: 'feature',
+    category: 'Feature',
     upvotes: 31,
     status: 'in-progress',
     description: 'Be able to bookmark challenges to take later on.',
@@ -286,16 +286,16 @@ export const mockProduct: Product[] = [
   {
     id: 11,
     title: 'Animated solution screenshots',
-    category: 'bug',
+    category: 'Bug',
     upvotes: 9,
     status: 'in-progress',
     description: 'Screenshots of solutions with animations don’t display correctly.',
-    comments: []
+    comments: [],
   },
   {
     id: 12,
     title: 'Add micro-interactions',
-    category: 'enhancement',
+    category: 'Enhancement',
     upvotes: 0,
     status: 'live',
     description: 'Small animations at specific points can add delight.',

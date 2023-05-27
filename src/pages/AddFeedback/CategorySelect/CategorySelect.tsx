@@ -1,25 +1,30 @@
 import { useState } from 'react';
 import { themeColors } from '../../../theme/colors';
-import { Filter } from '../../../store/filters/filters.types';
 import { ReactComponent as CheckIcon } from '../../../assets/shared/icon-check.svg';
 import { ReactComponent as ChevronDownIcon } from '../../../assets/shared/icon-arrow-down.svg';
-
 import { FlexBoxColumn } from '../../../components/FlexBox/FlexBoxcolumn';
 import { Box, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { UseFormRegisterReturn, useFormContext } from 'react-hook-form';
+import { Category } from '../../../store/products/products.types';
+import { FeedbackForm } from '../AddFeedback';
 
-export const categoryConfig: Filter[] = ['UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
+export const categoryConfig: Category[] = ['UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
 
 interface CategorySelectProps {
   label: string;
   placeholder: string;
+  register: UseFormRegisterReturn;
 }
 
-export const CategorySelect = ({ label, placeholder }: CategorySelectProps) => {
-  const [selectedCategory, setSelectedCategory] = useState<Filter>(categoryConfig[0]);
+export const CategorySelect = ({ label, placeholder, register }: CategorySelectProps) => {
+  const { setValue } = useFormContext<FeedbackForm>();
+
+  const [selectedCategory, setSelectedCategory] = useState<Category>(categoryConfig[0]);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
-    const selectedCategory = event.target.value as Filter;
+    const selectedCategory = event.target.value as Category;
     setSelectedCategory(selectedCategory);
+    setValue('category', selectedCategory);
   };
 
   return (
@@ -31,6 +36,7 @@ export const CategorySelect = ({ label, placeholder }: CategorySelectProps) => {
         {placeholder}
       </Typography>
       <Select
+        {...register}
         fullWidth
         disableUnderline
         displayEmpty

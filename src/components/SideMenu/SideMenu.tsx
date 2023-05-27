@@ -6,20 +6,20 @@ import DesktopHeaderImg from '../../assets/suggestions/desktop/background-header
 import { themeColors } from '../../theme/colors';
 import { Roadmap } from './Roadmap/Roadmap';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { Filter } from '../../store/filters/filters.types';
-import { filtersSelecter, setFilter } from '../../store/filters/filters.slice';
+import { filtersSelecter, setCategory } from '../../store/filters/filters.slice';
+import { Category } from '../../store/products/products.types';
 
-const filterConfig: Filter[] = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
+const filterConfig: Category[] = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
 
 export const SideMenu = () => {
   const dispatch = useAppDispatch();
   const { filter } = useAppSelector(filtersSelecter);
 
-  const [slected, setSelected] = useState<Filter>(filter || 'All');
+  const [slected, setSelected] = useState<Category>(filter || 'All');
 
-  const handleFilterChipClick = (filter: Filter) => {
+  const handleFilterChipClick = (filter: Category) => {
     setSelected(filter);
-    dispatch(setFilter(filter));
+    dispatch(setCategory(filter));
   };
 
   return (

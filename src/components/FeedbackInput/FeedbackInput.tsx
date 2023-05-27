@@ -1,14 +1,16 @@
 import { Input, Typography } from '@mui/material';
 import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
 import { themeColors } from '../../theme/colors';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface FeedbackInputProps {
   label: string;
   placeholder: string;
   type: 'text' | 'textarea';
+  register: UseFormRegisterReturn;
 }
 
-export const FeedbackInput = ({ label, placeholder, type }: FeedbackInputProps) => {
+export const FeedbackInput = ({ label, placeholder, type, register }: FeedbackInputProps) => {
   return (
     <FlexBoxColumn alignItems={'flex-start'}>
       <Typography variant='small-02-bold' color={themeColors.blue300}>
@@ -19,6 +21,7 @@ export const FeedbackInput = ({ label, placeholder, type }: FeedbackInputProps) 
       </Typography>
 
       <Input
+        {...register}
         disableUnderline
         fullWidth
         multiline={type === 'textarea'}

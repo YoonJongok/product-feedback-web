@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '..';
-import { Filter, FiltersState, SortBy } from './filters.types';
+import { FiltersState, SortBy } from './filters.types';
+import { Category } from '../products/products.types';
 
 const initialState: FiltersState = {
   filter: 'All',
@@ -11,7 +12,7 @@ export const filtersSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
-    setFilter: (state, action: PayloadAction<Filter>) => {
+    setCategory: (state, action: PayloadAction<Category>) => {
       state.filter = action.payload;
     },
     setSortBy: (state, action: PayloadAction<SortBy>) => {
@@ -20,7 +21,7 @@ export const filtersSlice = createSlice({
   },
 });
 
-export const { setFilter, setSortBy } = filtersSlice.actions;
+export const { setCategory, setSortBy } = filtersSlice.actions;
 
 export const filtersSelecter = (state: RootState) => state.filters;
 
