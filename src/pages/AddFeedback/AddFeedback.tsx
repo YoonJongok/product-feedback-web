@@ -2,7 +2,7 @@ import React from 'react';
 import { FlexBoxColumn } from '../../components/FlexBox/FlexBoxcolumn';
 import { FlexBoxRow } from '../../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../../theme/colors';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { ReactComponent as ChevronLeftIcon } from '../../assets/shared/icon-arrow-left.svg';
 import FeedbackInput from '../../components/FeedbackInput';
 import { CategorySelect } from './CategorySelect/CategorySelect';
@@ -32,11 +32,12 @@ export const AddFeedback = () => {
           py: '50px',
           borderRadius: '10px',
           gap: '24px',
+          mb: 5,
         }}
       >
         <Typography
           variant='medium-03-bold'
-          sx={{ textTransform: 'capitalize', color: themeColors.blue300, mb: 10 }}
+          sx={{ textTransform: 'capitalize', color: themeColors.blue300, mb: 5 }}
         >
           create new feedback
         </Typography>
@@ -51,6 +52,21 @@ export const AddFeedback = () => {
           placeholder='Include any specific comments on what should be improved, added, etc.'
           type='textarea'
         />
+        <FlexBoxRow justifyContent={'flex-end'} gap={4} sx={{ width: '100%' }}>
+          <Button
+            fullWidth
+            variant='contained'
+            sx={{
+              bgcolor: themeColors.blue400,
+              color: themeColors.white,
+            }}
+          >
+            Cancel
+          </Button>
+          <Button fullWidth variant='containdPurple'>
+            Add feedback
+          </Button>
+        </FlexBoxRow>
       </FlexBoxColumn>
     </FlexBoxColumn>
   );

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { themeColors } from '../../../theme/colors';
 import { Filter } from '../../../store/filters/filters.types';
 import { ReactComponent as CheckIcon } from '../../../assets/shared/icon-check.svg';
+import { ReactComponent as ChevronDownIcon } from '../../../assets/shared/icon-arrow-down.svg';
+
 import { FlexBoxColumn } from '../../../components/FlexBox/FlexBoxcolumn';
-import { MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
+import { Box, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 
 export const categoryConfig: Filter[] = ['UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
 
@@ -16,9 +18,9 @@ export const CategorySelect = ({ label, placeholder }: CategorySelectProps) => {
   const [selectedCategory, setSelectedCategory] = useState<Filter>(categoryConfig[0]);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
-    // const selectedSort = event.target.value as SortBy;
-    // setSelectedSort(selectedSort);
-    // dispatch(setSortBy(selectedSort));
+    const selectedCategory = event.target.value as Filter;
+    setSelectedCategory(selectedCategory);
+    // dispatch(setSortBy(selectedCategory));
   };
 
   return (
@@ -36,6 +38,7 @@ export const CategorySelect = ({ label, placeholder }: CategorySelectProps) => {
         value={selectedCategory}
         onChange={handleChange}
         variant='standard'
+        IconComponent={ArrowDownIcon}
         renderValue={(selected) => (
           <Typography
             sx={{
@@ -43,7 +46,7 @@ export const CategorySelect = ({ label, placeholder }: CategorySelectProps) => {
               alignItems: 'center',
               color: themeColors.blue400,
               gap: 3,
-              bgcolor: themeColors.greyBlue100,
+              // bgcolor: themeColors.greyBlue100,
             }}
           >
             {selected}
@@ -61,7 +64,7 @@ export const CategorySelect = ({ label, placeholder }: CategorySelectProps) => {
           bgcolor: themeColors.greyBlue100,
           borderRadius: '5px',
           px: 5,
-          '& .MuiSelect-select': {
+          '& div:focus': {
             bgcolor: themeColors.greyBlue100,
           },
         }}
@@ -83,6 +86,14 @@ export const CategorySelect = ({ label, placeholder }: CategorySelectProps) => {
         ))}
       </Select>
     </FlexBoxColumn>
+  );
+};
+
+export const ArrowDownIcon = () => {
+  return (
+    <Box>
+      <ChevronDownIcon />
+    </Box>
   );
 };
 
