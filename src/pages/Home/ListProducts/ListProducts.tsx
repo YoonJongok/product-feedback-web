@@ -112,11 +112,7 @@ export const ListProducts = () => {
         </FlexBoxRow>
         <Button variant='containdPurple'>Add Feedback</Button>
       </FlexBoxRow>
-      {isLoading && (
-        <FlexBoxRow justifyContent={'center'}>
-          <CircularProgress />
-        </FlexBoxRow>
-      )}
+      {isLoading && [0, 1, 2].map((_, index) => <FeedbackCard.Skeleton key={index} />)}
       {filteredProducts &&
         filteredProducts.map((product, index) => <FeedbackCard key={index} product={product} />)}
     </>

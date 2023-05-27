@@ -1,7 +1,6 @@
-import React from 'react';
 import { FlexBoxRow } from '../FlexBox/FlexBoxRow';
 import { themeColors } from '../../theme/colors';
-import { Button, Typography } from '@mui/material';
+import { Button, Skeleton, Typography } from '@mui/material';
 import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
 import { ReactComponent as ChevronUpIcon } from '../../assets/shared/icon-arrow-up.svg';
 import { ReactComponent as CommentIcon } from '../../assets/shared/icon-comments.svg';
@@ -58,6 +57,61 @@ export const FeedbackCard = ({ product }: FeedbackCardProps) => {
         <Typography variant='medium-01-bold' sx={{ color: themeColors.greyBlue400, pt: '3px' }}>
           {product.comments && !!product.comments.length ? product.comments.length : 0}
         </Typography>
+      </FlexBoxRow>
+    </FlexBoxRow>
+  );
+};
+
+FeedbackCard.Skeleton = function FeedbackCardSkeleton() {
+  return (
+    <FlexBoxRow
+      sx={{
+        justifyContent: 'space-between',
+        px: 8,
+        py: 7,
+        borderRadius: '10px',
+        backgroundColor: themeColors.white,
+        cursor: 'pointer',
+        minHeight: '97px',
+      }}
+    >
+      <FlexBoxRow justifyContent={'flex-start'} alignItems={'flex-start'} gap={10}>
+        <Button
+          variant='vote'
+          color='primary'
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            gap: 2,
+          }}
+        >
+          <ChevronUpIcon />
+          <Skeleton sx={{ width: '25px', height: '25px', bgcolor: themeColors.greyBlue300 }} />
+        </Button>
+        <FlexBoxColumn>
+          <Skeleton sx={{ width: '150px', height: '30px', bgcolor: themeColors.greyBlue300 }} />
+          <Skeleton
+            sx={{
+              width: '230px',
+              height: '20px',
+              bgcolor: themeColors.greyBlue300,
+            }}
+          />
+          <Skeleton
+            sx={{
+              width: '75px',
+              height: '56px',
+              bgcolor: themeColors.greyBlue300,
+              borderRadius: '10px',
+            }}
+          />
+        </FlexBoxColumn>
+      </FlexBoxRow>
+      <FlexBoxRow alignItems={'center'} gap={2}>
+        <CommentIcon />
+        <Skeleton sx={{ width: '15px', height: '30px', bgcolor: themeColors.greyBlue300 }} />
       </FlexBoxRow>
     </FlexBoxRow>
   );
