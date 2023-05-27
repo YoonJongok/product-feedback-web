@@ -4,21 +4,24 @@ import { Box, Skeleton, Typography } from '@mui/material';
 import { themeColors } from '../../../theme/colors';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { fetchFeedbacks, feedbacksSelector } from '../../../store/feedbacks/feedbacks.slice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getRoadmapStatuses } from './Roadmap.config';
 
 export const Roadmap = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const dispatch = useAppDispatch();
 
-  const { status, feedbacks } = useAppSelector(feedbacksSelector);
-
-  const isLoading = status === 'loading' || status === 'idle';
+  const { feedbacks } = useAppSelector(feedbacksSelector);
 
   const roadmapStatusesConfig = getRoadmapStatuses(feedbacks);
 
   useEffect(() => {
-    dispatch(fetchFeedbacks());
-  }, []);
+    if (isLoading) {
+      dispatch(fetchFeedbacks());
+      setIsLoading(false);
+    }
+  }, [dispatch, isLoading]);
 
   return (
     <FlexBoxColumn

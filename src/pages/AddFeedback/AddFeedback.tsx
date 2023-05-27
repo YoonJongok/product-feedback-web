@@ -8,23 +8,36 @@ import { CategorySelect } from './CategorySelect/CategorySelect';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { categorySchema } from '../../store/feedbacks/feedbacks.types';
+import { Feedback, categorySchema } from '../../store/feedbacks/feedbacks.types';
+import { useAppDispatch } from '../../store/hooks';
+import { addFeedback } from '../../store/feedbacks/feedbacks.slice';
 
 const feedbackFormSchema = z.object({
   title: z.string().min(1, { message: 'Title is required' }),
   category: categorySchema,
-  detail: z.string().min(1, { message: 'Detail is required' }),
+  description: z.string().min(1, { message: 'Detail is required' }),
 });
 
 export type FeedbackForm = z.infer<typeof feedbackFormSchema>;
 
 export const AddFeedback = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const methods = useForm<FeedbackForm>();
   const { register, handleSubmit } = methods;
 
-  const onSubmit = (data: FeedbackForm) => console.log(data);
+  const onSubmit = (formData: FeedbackForm) => {
+    const newFeedback: Feedback = {
+      id: crypto.randomUUID(),
+      ...formData,
+      upvotes: 0,
+      status: 'suggestion',
+      comments: [],
+    };
+    dispatch(addFeedback(newFeedback));
+    navigate('/');
+  };
 
   return (
     <FlexBoxColumn
@@ -84,7 +97,7 @@ export const AddFeedback = () => {
               label='Feedback Detail'
               placeholder='Include any specific comments on what should be improved, added, etc.'
               type='textarea'
-              register={register('detail', { required: true })}
+              register={register('description', { required: true })}
             />
             <FlexBoxRow justifyContent={'flex-end'} gap={4} sx={{ width: '100%' }}>
               <Button
