@@ -37,7 +37,7 @@ export const AddFeedback = () => {
 
   const onSubmit = (formData: FeedbackForm) => {
     const newFeedback: Feedback = {
-      id: crypto.randomUUID(),
+      id: Math.random(),
       ...formData,
       upvotes: 0,
       status: 'suggestion',

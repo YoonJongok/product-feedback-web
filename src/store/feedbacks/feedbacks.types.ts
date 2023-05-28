@@ -25,7 +25,7 @@ export const commentSchema = z.object({
 });
 
 export const FeedbackSchema = z.object({
-  id: z.string().or(z.number()),
+  id: z.number(),
   title: z.string(),
   category: categorySchema,
   upvotes: z.number(),
@@ -43,6 +43,7 @@ export type Feedback = z.infer<typeof FeedbackSchema>;
 
 export type FeedbackState = {
   feedbacks: Feedback[];
+  feedbackDetail?: Feedback;
   status: AsyncThunkStatus;
   error?: string;
 };
