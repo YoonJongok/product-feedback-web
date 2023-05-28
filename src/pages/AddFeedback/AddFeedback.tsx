@@ -1,8 +1,8 @@
 import { FlexBoxColumn } from '../../components/FlexBox/FlexBoxcolumn';
 import { FlexBoxRow } from '../../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../../theme/colors';
-import { Button, Typography } from '@mui/material';
-import { ReactComponent as ChevronLeftIcon } from '../../assets/shared/icon-arrow-left.svg';
+import { Box, Button, Typography } from '@mui/material';
+import { ReactComponent as AddIcon } from '../../assets/shared/icon-new-feedback.svg';
 import FeedbackInput from '../../components/FeedbackInput';
 import { CategorySelect } from './CategorySelect/CategorySelect';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,8 @@ import { z } from 'zod';
 import { Feedback, categorySchema } from '../../store/feedbacks/feedbacks.types';
 import { useAppDispatch } from '../../store/hooks';
 import { addFeedback } from '../../store/feedbacks/feedbacks.slice';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { GoBackButton } from '../../components/GoBackButton/GoBackButton';
 
 const feedbackFormSchema = z.object({
   title: z.string().min(1, { message: 'Title is required' }),
@@ -24,8 +26,14 @@ export const AddFeedback = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const methods = useForm<FeedbackForm>();
-  const { register, handleSubmit } = methods;
+  const methods = useForm<FeedbackForm>({
+    resolver: zodResolver(feedbackFormSchema),
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = methods;
 
   const onSubmit = (formData: FeedbackForm) => {
     const newFeedback: Feedback = {
@@ -44,30 +52,15 @@ export const AddFeedback = () => {
       sx={{
         mx: 'auto',
         minWidth: '540px',
-        gap: '30px',
+        gap: '45px',
       }}
     >
-      <FlexBoxRow
-        sx={{
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          gap: '15px',
-          cursor: 'pointer',
-        }}
-        onClick={() => navigate(-1)}
-      >
-        <ChevronLeftIcon style={{ fill: themeColors.blue400 }} />
-        <Typography
-          variant='small-01-bold'
-          sx={{ textTransform: 'capitalize', color: themeColors.greyBlue400, pt: '3px' }}
-        >
-          Go back
-        </Typography>
-      </FlexBoxRow>
+      <GoBackButton onClickGoBackBtn={() => navigate(-1)} />
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FlexBoxColumn
             sx={{
+              position: 'relative',
               background: themeColors.white,
               px: 10,
               py: '50px',
@@ -76,6 +69,14 @@ export const AddFeedback = () => {
               mb: 5,
             }}
           >
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '-25px',
+              }}
+            >
+              <AddIcon />
+            </Box>
             <Typography
               variant='medium-03-bold'
               sx={{ textTransform: 'capitalize', color: themeColors.blue300, mb: 5 }}
@@ -87,18 +88,23 @@ export const AddFeedback = () => {
               placeholder='Add a short, descriptive headline'
               type='text'
               register={register('title', { required: true })}
+              error={errors.title && errors.title.message}
             />
+
             <CategorySelect
               label='Category'
               placeholder='Choose a category for your feedback'
               register={register('category', { required: true })}
+              error={errors.category && errors.category.message}
             />
             <FeedbackInput
               label='Feedback Detail'
               placeholder='Include any specific comments on what should be improved, added, etc.'
               type='textarea'
               register={register('description', { required: true })}
+              error={errors.description && errors.description.message}
             />
+
             <FlexBoxRow justifyContent={'flex-end'} gap={4} sx={{ width: '100%' }}>
               <Button
                 fullWidth

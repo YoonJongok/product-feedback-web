@@ -14,9 +14,10 @@ interface CategorySelectProps {
   label: string;
   placeholder: string;
   register: UseFormRegisterReturn;
+  error?: string;
 }
 
-export const CategorySelect = ({ label, placeholder, register }: CategorySelectProps) => {
+export const CategorySelect = ({ label, placeholder, register, error }: CategorySelectProps) => {
   const { setValue } = useFormContext<FeedbackForm>();
 
   const [selectedCategory, setSelectedCategory] = useState<Category>(categoryConfig[0]);
@@ -90,6 +91,11 @@ export const CategorySelect = ({ label, placeholder, register }: CategorySelectP
           </MenuItem>
         ))}
       </Select>
+      {error && (
+        <Typography variant='small-01-regular' color={themeColors.red}>
+          {error}
+        </Typography>
+      )}
     </FlexBoxColumn>
   );
 };

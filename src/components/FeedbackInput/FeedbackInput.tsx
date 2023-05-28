@@ -8,9 +8,16 @@ interface FeedbackInputProps {
   placeholder: string;
   type: 'text' | 'textarea';
   register: UseFormRegisterReturn;
+  error?: string;
 }
 
-export const FeedbackInput = ({ label, placeholder, type, register }: FeedbackInputProps) => {
+export const FeedbackInput = ({
+  label,
+  placeholder,
+  type,
+  register,
+  error,
+}: FeedbackInputProps) => {
   return (
     <FlexBoxColumn alignItems={'flex-start'}>
       <Typography variant='small-02-bold' color={themeColors.blue300}>
@@ -32,6 +39,11 @@ export const FeedbackInput = ({ label, placeholder, type, register }: FeedbackIn
           px: 5,
         }}
       />
+      {error && (
+        <Typography variant='small-01-regular' color={themeColors.red}>
+          {error}
+        </Typography>
+      )}
     </FlexBoxColumn>
   );
 };
