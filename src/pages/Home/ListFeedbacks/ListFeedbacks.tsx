@@ -16,18 +16,19 @@ import { useNavigate } from 'react-router-dom';
 export const ListFeedbacks = () => {
   const [selectedSort, setSelectedSort] = useState<SortBy>(sortByConfig[0]);
 
-  const [isLoading, setIsLoading] = useState(true);
-
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
-  const { feedbacks } = useAppSelector(feedbacksSelector);
+  const { status, feedbacks } = useAppSelector(feedbacksSelector);
   const { filter, sortBy } = useAppSelector(filtersSelecter);
 
+  const isLoading = status === 'loading' || status === 'idle';
+  const isSuccess = status === 'succeeded' && feedbacks;
+
   const filteredFeedbacks = useMemo(() => {
-    return !isLoading && filterFeedbacks(feedbacks, filter, sortBy);
-  }, [feedbacks, filter, isLoading, sortBy]);
+    return isSuccess && filterFeedbacks(feedbacks, filter, sortBy);
+  }, [feedbacks, filter, status, sortBy]);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     const selectedSort = event.target.value as SortBy;
@@ -36,11 +37,8 @@ export const ListFeedbacks = () => {
   };
 
   useEffect(() => {
-    if (isLoading) {
-      dispatch(fetchFeedbacks());
-      setIsLoading(false);
-    }
-  }, [dispatch, isLoading]);
+    dispatch(fetchFeedbacks());
+  }, []);
 
   return (
     <>

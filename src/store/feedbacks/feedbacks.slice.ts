@@ -6,10 +6,9 @@ import { createAppAsyncThunk } from '../hooks';
 import { FETCH_FEEDBACKS } from '../store.types';
 import { mockFeedback } from '../../utils/mockData/mockFeedback';
 
-// Enable when api is ready
-// export const fetchFeedbacks = createAppAsyncThunk(FETCH_FEEDBACKS, async () => {
-//   return await feedbacksApi.fetchFeedbacks();
-// });
+export const fetchFeedbacks = createAppAsyncThunk(FETCH_FEEDBACKS, async () => {
+  return await feedbacksApi.fetchFeedbacks();
+});
 
 const initialState: FeedbackState = {
   feedbacks: [],
@@ -21,32 +20,32 @@ export const feedbacksSlice = createSlice({
   name: 'feedbacks',
   initialState,
   reducers: {
-    fetchFeedbacks: (state) => {
-      state.feedbacks = [...mockFeedback];
-    },
+    // fetchFeedbacks: (state) => {
+    //   state.feedbacks = [...mockFeedback];
+    // },
     addFeedback: (state, action: PayloadAction<Feedback>) => {
       state.feedbacks = [...state.feedbacks, action.payload];
     },
     clearFeedbacksState: () => initialState,
   },
   // Enable when api is ready
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(fetchFeedbacks.pending, (state) => {
-  //       state.status = 'loading';
-  //     })
-  //     .addCase(fetchFeedbacks.fulfilled, (state, action) => {
-  //       state.status = 'succeeded';
-  //       state.feedbacks = action.payload as Feedback[];
-  //     })
-  //     .addCase(fetchFeedbacks.rejected, (state, action) => {
-  //       state.status = 'failed';
-  //       state.error = action.payload as string;
-  //     });
-  // },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchFeedbacks.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchFeedbacks.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.feedbacks = action.payload as Feedback[];
+      })
+      .addCase(fetchFeedbacks.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload as string;
+      });
+  },
 });
 
-export const { fetchFeedbacks, clearFeedbacksState, addFeedback } = feedbacksSlice.actions;
+export const { clearFeedbacksState, addFeedback } = feedbacksSlice.actions;
 
 export const feedbacksSelector = (state: RootState) => state.feedbacks;
 
