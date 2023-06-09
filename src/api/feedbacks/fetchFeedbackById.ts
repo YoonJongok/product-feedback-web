@@ -1,7 +1,7 @@
 import { Feedback, FeedbackSchema } from '../../store/feedbacks/feedbacks.types';
 import { mockFeedback } from '../../utils/mockData/mockFeedback';
 
-export const fetchFeedbackById = async (id: number): Promise<Feedback | string> => {
+export const fetchFeedbackById = async (id: number | string): Promise<Feedback | string> => {
   return new Promise((resolve) => {
     const feedback = mockFeedback.find((feedback) => feedback.id === +id);
     if (!feedback) throw new Error('Feedback not found');

@@ -1,7 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import { FlexBoxRow } from '../../../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../../../theme/colors';
-import { Button, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
+import {
+  Button,
+  Link as MuiLink,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography,
+} from '@mui/material';
 import { ReactComponent as SuggestionIcon } from '../../../assets/suggestions/icon-suggestions.svg';
 import { ReactComponent as CheckIcon } from '../../../assets/shared/icon-check.svg';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
@@ -11,7 +18,7 @@ import { filtersSelecter, setSortBy } from '../../../store/filters/filters.slice
 import { filterFeedbacks } from './ListFeedbacks.helpers';
 import { sortByConfig } from './ListFeedbacks.config';
 import { SortBy } from '../../../store/filters/filters.types';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const ListFeedbacks = () => {
   const [selectedSort, setSelectedSort] = useState<SortBy>(sortByConfig[0]);
@@ -111,7 +118,9 @@ export const ListFeedbacks = () => {
       {isLoading && [0, 1, 2].map((_, index) => <FeedbackCard.Skeleton key={index} />)}
       {filteredFeedbacks &&
         filteredFeedbacks.map((feedback, index) => (
-          <FeedbackCard key={index} feedback={feedback} />
+          <MuiLink key={index} component={Link} to={`/${feedback.id}`}>
+            <FeedbackCard feedback={feedback} />
+          </MuiLink>
         ))}
     </>
   );

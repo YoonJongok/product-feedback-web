@@ -5,18 +5,14 @@ import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
 import { ReactComponent as ChevronUpIcon } from '../../assets/shared/icon-arrow-up.svg';
 import { ReactComponent as CommentIcon } from '../../assets/shared/icon-comments.svg';
 import { Feedback } from '../../store/feedbacks/feedbacks.types';
-import { useNavigate } from 'react-router-dom';
 
 interface FeedbackCardProps {
   feedback: Feedback;
 }
 
 export const FeedbackCard = ({ feedback }: FeedbackCardProps) => {
-  const navigate = useNavigate();
-
   return (
     <FlexBoxRow
-      onClick={() => navigate(`/${feedback.id}`)}
       sx={{
         justifyContent: 'space-between',
         px: 8,
