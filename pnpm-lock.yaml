@@ -12,6 +12,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.57.1
   '@vitejs/plugin-react': ^4.0.0
   axios: ^1.4.0
+  cross-env: ^7.0.3
   eslint: ^8.38.0
   eslint-config-prettier: ^8.8.0
   eslint-plugin-prettier: ^4.2.1
@@ -39,6 +40,7 @@ dependencies:
   '@mui/material': 5.13.0_iv5go3rgyvd4fx7f3hepohh5uu
   '@reduxjs/toolkit': 1.9.5_k4ae6lp43ej6mezo3ztvx6pykq
   axios: 1.4.0
+  cross-env: 7.0.3
   json-server: 0.17.3_vlja2fwiy3u2nwlnyi3d4in7ji
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1638,6 +1640,14 @@ packages:
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
+    dev: false
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: false
 
   /cross-spawn/7.0.3:
