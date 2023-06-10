@@ -9,6 +9,9 @@ export default defineConfig({
     react(),
     checker({
       typescript: true,
+      eslint: {
+        lintCommand: 'eslint src --ext js,jsx,ts,tsx --config .eslintrc',
+      },
     }),
     svgr(),
   ],

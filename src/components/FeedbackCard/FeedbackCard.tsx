@@ -5,12 +5,15 @@ import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
 import { ReactComponent as ChevronUpIcon } from '../../assets/shared/icon-arrow-up.svg';
 import { ReactComponent as CommentIcon } from '../../assets/shared/icon-comments.svg';
 import { Feedback } from '../../store/feedbacks/feedbacks.types';
+import { useMatch } from 'react-router-dom';
 
 interface FeedbackCardProps {
   feedback: Feedback;
 }
 
 export const FeedbackCard = ({ feedback }: FeedbackCardProps) => {
+  const isFeedbackDetail = useMatch('/:id');
+
   return (
     <FlexBoxRow
       sx={{
@@ -19,7 +22,7 @@ export const FeedbackCard = ({ feedback }: FeedbackCardProps) => {
         py: 7,
         borderRadius: '10px',
         backgroundColor: themeColors.white,
-        cursor: 'pointer',
+        cursor: isFeedbackDetail ? 'default' : 'pointer',
       }}
     >
       <FlexBoxRow justifyContent={'flex-start'} alignItems={'flex-start'} gap={10}>

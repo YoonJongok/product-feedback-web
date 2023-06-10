@@ -1,23 +1,20 @@
 import { useEffect } from 'react';
 import { FlexBoxColumn } from '../../components/FlexBox/FlexBoxcolumn';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { feedbacksSelector, fetchFeedbackById } from '../../store/feedbacks/feedbacks.slice';
 import FeedbackCard from '../../components/FeedbackCard';
+import { GoBackButton } from '../../components/GoBackButton/GoBackButton';
 
 export const FeedbackDetail = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const id = location.pathname.split('/')[1];
 
   const dispatch = useAppDispatch();
   const { status, feedbackDetail } = useAppSelector(feedbacksSelector);
 
-  console.log(status);
-
   const isLoading = status === 'loading' || status === 'idle';
-
-  // if (isLoading) return <div>Loading...</div>;
-  console.log(feedbackDetail);
 
   useEffect(() => {
     dispatch(fetchFeedbackById(id));
@@ -25,6 +22,7 @@ export const FeedbackDetail = () => {
 
   return (
     <FlexBoxColumn sx={{ mx: 'auto', minWidth: 730 }}>
+      <GoBackButton onClickGoBackBtn={() => navigate(-1)} />
       {!isLoading && feedbackDetail && <FeedbackCard feedback={feedbackDetail} />}
     </FlexBoxColumn>
   );

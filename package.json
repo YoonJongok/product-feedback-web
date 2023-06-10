@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "db": "json-server --watch db.json --port 4000",
     "dev": "cross-env VITE_MOCK_API=true vite",
+    "db": "json-server --watch db.json --port 4000",
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",

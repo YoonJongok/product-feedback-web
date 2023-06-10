@@ -2,7 +2,6 @@ import { Feedback, FeedbackSchema } from '../../store/feedbacks/feedbacks.types'
 import { isMockApi } from '../../utils/isMockApi';
 import { mockFeedback } from '../../utils/mockData/mockFeedback';
 import { apiService } from '../apiService';
-// http://localhost:4000/feedbacks?_embed=comments
 
 export const fetchFeedbacks = async (): Promise<Feedback[] | string> => {
   if (isMockApi()) {
