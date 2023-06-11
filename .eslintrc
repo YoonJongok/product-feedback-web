@@ -27,7 +27,9 @@
     "no-duplicate-imports": "error",
     "react/prop-types": "off",
     "no-extra-boolean-cast": "off",
-    "@typescript-eslint/ban-ts-comment": "off"
+    "@typescript-eslint/ban-ts-comment": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off"
   },
   "ignorePatterns": ["src/vite-env.d.ts"],
   "settings": {
