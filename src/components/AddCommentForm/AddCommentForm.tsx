@@ -2,20 +2,38 @@ import { Button, Input, Typography } from '@mui/material';
 import { themeColors } from '../../theme/colors';
 import { FlexBoxRow } from '../FlexBox/FlexBoxRow';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 const charLimit = 250;
 
+const addCommetnFormSchema = z.object({
+  comment: z.string().min(1, { message: 'Comment is required to submit' }),
+});
+
+type AddCommentForm = z.infer<typeof addCommetnFormSchema>;
+
 export const AddCommentForm = () => {
   const [coundLimit, setCountLimit] = useState(charLimit);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<AddCommentForm>();
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setCountLimit(charLimit - e.target.value.length);
   };
 
+  const handleFormSubmit = ({ comment }: AddCommentForm) => {
+    console.log(comment);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(handleFormSubmit)}>
       <Input
-        // {...register}
+        {...register('comment', { required: true })}
         inputProps={{ maxLength: 250 }}
         disableUnderline
         fullWidth
@@ -29,12 +47,19 @@ export const AddCommentForm = () => {
         }}
         onChange={(e) => handleFormChange(e)}
       />
+      {errors.comment && (
+        <Typography variant='small-01-regular' color={themeColors.red}>
+          {errors.comment.message}
+        </Typography>
+      )}
 
       <FlexBoxRow sx={{ justifyContent: 'space-between', alignItems: 'center', mt: '16px' }}>
         <Typography variant='small-01-regular' color={themeColors.blue300}>
           {coundLimit} Characters left
         </Typography>
-        <Button variant='containdPurple'>post comment</Button>
+        <Button type='submit' variant='containdPurple'>
+          post comment
+        </Button>
       </FlexBoxRow>
     </form>
   );
