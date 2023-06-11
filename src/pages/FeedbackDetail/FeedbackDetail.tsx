@@ -8,6 +8,8 @@ import { GoBackButton } from '../../components/GoBackButton/GoBackButton';
 import { FlexBoxRow } from '../../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../../theme/colors';
 import Comment from '../../components/Comment';
+import { Typography } from '@mui/material';
+import AddCommentForm from '../../components/AddCommentForm';
 
 export const FeedbackDetail = () => {
   const location = useLocation();
@@ -46,7 +48,19 @@ export const FeedbackDetail = () => {
         </>
       )}
 
-      <FlexBoxColumn></FlexBoxColumn>
+      <FlexBoxColumn
+        sx={{
+          px: '34px',
+          py: '24px',
+          borderRadius: '10px',
+          backgroundColor: themeColors.white,
+        }}
+      >
+        <Typography variant='medium-01-bold' sx={{ mb: 6, color: themeColors.blue300 }}>
+          Add Comment
+        </Typography>
+        <AddCommentForm />
+      </FlexBoxColumn>
     </FlexBoxColumn>
   );
 };
