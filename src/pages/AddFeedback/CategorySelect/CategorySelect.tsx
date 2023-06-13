@@ -8,7 +8,7 @@ import { UseFormRegisterReturn, useFormContext } from 'react-hook-form';
 import { Category } from '../../../store/feedbacks/feedbacks.types';
 import { FeedbackForm } from '../AddFeedback';
 
-export const categoryConfig: Category[] = ['UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
+export const categoryConfig: Category[] = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
 
 interface CategorySelectProps {
   label: string;

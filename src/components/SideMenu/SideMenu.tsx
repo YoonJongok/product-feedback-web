@@ -4,7 +4,7 @@ import { Box, Chip, Typography } from '@mui/material';
 import { FlexBoxRow } from '../FlexBox/FlexBoxRow';
 import DesktopHeaderImg from '../../assets/suggestions/desktop/background-header.png';
 import { themeColors } from '../../theme/colors';
-import { Roadmap } from './Roadmap/Roadmap';
+import RoadmapCard from './RoadmapCard';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { filtersSelecter, setCategory } from '../../store/filters/filters.slice';
 import { Category } from '../../store/feedbacks/feedbacks.types';
@@ -90,7 +90,7 @@ export const SideMenu = () => {
           />
         ))}
       </FlexBoxRow>
-      <Roadmap />
+      <RoadmapCard />
     </FlexBoxColumn>
   );
 };

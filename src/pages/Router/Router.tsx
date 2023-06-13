@@ -15,6 +15,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path=':id' element={<FeedbackDetail />} />
       <Route path='add' element={<AddFeedback />} />
+      <Route path='roadmap' element={<div>roadmap</div>} />
     </Route>
   )
 );

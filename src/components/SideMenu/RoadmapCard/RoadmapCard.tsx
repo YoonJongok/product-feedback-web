@@ -7,7 +7,7 @@ import { fetchFeedbacks, feedbacksSelector } from '../../../store/feedbacks/feed
 import { useEffect } from 'react';
 import { getRoadmapStatuses } from './Roadmap.config';
 
-export const Roadmap = () => {
+export const RoadmapCard = () => {
   const dispatch = useAppDispatch();
 
   const { status, feedbacks } = useAppSelector(feedbacksSelector);
@@ -41,7 +41,7 @@ export const Roadmap = () => {
         </Typography>
       </FlexBoxRow>
       <FlexBoxColumn gap={2} minHeight={120}>
-        {isLoading && [0, 1, 2, 3].map((_, index) => <Roadmap.Skeleton key={index} />)}
+        {isLoading && [0, 1, 2, 3].map((_, index) => <RoadmapCard.Skeleton key={index} />)}
         {!isLoading &&
           roadmapStatusesConfig.map((config) => (
             <FlexBoxRow key={config.key} justifyContent={'space-between'} alignItems={'center'}>
@@ -74,7 +74,7 @@ export const Roadmap = () => {
   );
 };
 
-Roadmap.Skeleton = function RoadmapSkeleton() {
+RoadmapCard.Skeleton = function RoadmapSkeleton() {
   return (
     <FlexBoxRow justifyContent={'space-between'} alignItems={'center'}>
       <FlexBoxRow sx={{ gap: 4, alignItems: 'center' }}>
