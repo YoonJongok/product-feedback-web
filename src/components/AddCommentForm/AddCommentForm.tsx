@@ -5,6 +5,9 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useParams } from 'react-router-dom';
+import { Comment } from '../../store/feedbacks/feedbacks.types';
+import { useAppDispatch } from '../../store/hooks';
+import { addCommentOnFeedback } from '../../store/feedbacks/feedbacks.slice';
 
 const charLimit = 250;
 
@@ -15,7 +18,8 @@ const addCommetnFormSchema = z.object({
 type AddCommentForm = z.infer<typeof addCommetnFormSchema>;
 
 export const AddCommentForm = () => {
-  const { id: feedbackId } = useParams();
+  const dispatch = useAppDispatch();
+  const { id: feedbackId } = useParams() as { id: string };
   const [coundLimit, setCountLimit] = useState(charLimit);
 
   const {
@@ -29,7 +33,19 @@ export const AddCommentForm = () => {
   };
 
   const handleFormSubmit = ({ comment }: AddCommentForm) => {
-    console.log(comment);
+    console.log({ comment });
+    const newComment: Comment = {
+      id: Math.floor(Math.random() * 1000000),
+      feedbackId: +feedbackId,
+      content: comment,
+      user: {
+        username: 'John Doe',
+        name: 'John Doe',
+        image: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 100)}}`,
+      },
+    };
+
+    dispatch(addCommentOnFeedback(newComment));
   };
 
   return (
