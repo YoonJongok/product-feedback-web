@@ -5,7 +5,7 @@ import { themeColors } from '../../../theme/colors';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { fetchFeedbacks, feedbacksSelector } from '../../../store/feedbacks/feedbacks.slice';
 import { useEffect } from 'react';
-import { getRoadmapStatuses } from './Roadmap.config';
+import { getRoadmapStatusConfig } from '../../../pages/Roadmap/Roadmap.config';
 import { Link } from 'react-router-dom';
 
 export const RoadmapSummary = () => {
@@ -15,7 +15,7 @@ export const RoadmapSummary = () => {
 
   const isLoading = status === 'loading' || status === 'idle';
 
-  const roadmapStatusesConfig = getRoadmapStatuses(feedbacks);
+  const roadmapStatusesConfig = getRoadmapStatusConfig(feedbacks);
 
   useEffect(() => {
     dispatch(fetchFeedbacks());

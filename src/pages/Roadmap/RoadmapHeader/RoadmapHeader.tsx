@@ -13,6 +13,7 @@ export const RoadmapHeader = () => {
     <FlexBoxRow
       sx={{
         justifyContent: 'space-between',
+        alignItems: 'center',
         px: 8,
         py: '27px',
         backgroundColor: themeColors.blue400,
