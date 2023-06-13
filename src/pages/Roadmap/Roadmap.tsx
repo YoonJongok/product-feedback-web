@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { FlexBoxColumn } from '../../components/FlexBox/FlexBoxcolumn';
 import RoadmapHeader from './RoadmapHeader';
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { feedbacksSelector, fetchFeedbacks } from '../../store/feedbacks/feedbacks.slice';
 import { getRoadmapStatusConfig } from './Roadmap.config';
@@ -20,8 +20,6 @@ export const Roadmap = () => {
   useEffect(() => {
     dispatch(fetchFeedbacks());
   }, []);
-
-  console.log('feedbacks', roadmapStatusesConfig);
 
   return (
     <FlexBoxColumn sx={{ mx: 'auto', minWidth: '1110px' }}>

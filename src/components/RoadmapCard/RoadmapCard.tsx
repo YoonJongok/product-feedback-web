@@ -7,13 +7,15 @@ import { RoadmapConfig } from '../../pages/Roadmap/Roadmap.config';
 import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
 import { ReactComponent as ChevronUpIcon } from '../../assets/shared/icon-arrow-up.svg';
 import { ReactComponent as CommentIcon } from '../../assets/shared/icon-comments.svg';
-
+import { useNavigate } from 'react-router-dom';
 interface RoadmapCardProps {
   feedback: Feedback;
   config: RoadmapConfig;
 }
 
 export const RoadmapCard = ({ feedback, config }: RoadmapCardProps) => {
+  const naviate = useNavigate();
+
   return (
     <Paper
       sx={{
@@ -24,7 +26,9 @@ export const RoadmapCard = ({ feedback, config }: RoadmapCardProps) => {
         borderRadius: '5px',
         borderTop: `5px solid ${config.bulletColor}`,
         backgroundColor: (theme) => (theme.palette.mode === 'dark' ? '#1A2027' : '#fff'),
+        cursor: 'pointer',
       }}
+      onClick={() => naviate(`/${feedback.id}`)}
     >
       <FlexBoxRow sx={{ gap: 4, alignItems: 'center' }}>
         <Box
