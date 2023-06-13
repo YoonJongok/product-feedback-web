@@ -1,13 +1,14 @@
 import { FlexBoxColumn } from '../../FlexBox/FlexBoxcolumn';
 import { FlexBoxRow } from '../../FlexBox/FlexBoxRow';
-import { Box, Skeleton, Typography } from '@mui/material';
+import { Box, Link as MuiLink, Skeleton, Typography } from '@mui/material';
 import { themeColors } from '../../../theme/colors';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { fetchFeedbacks, feedbacksSelector } from '../../../store/feedbacks/feedbacks.slice';
 import { useEffect } from 'react';
 import { getRoadmapStatuses } from './Roadmap.config';
+import { Link } from 'react-router-dom';
 
-export const RoadmapCard = () => {
+export const RoadmapSummary = () => {
   const dispatch = useAppDispatch();
 
   const { status, feedbacks } = useAppSelector(feedbacksSelector);
@@ -33,15 +34,22 @@ export const RoadmapCard = () => {
         >
           Roadmap
         </Typography>
-        <Typography
-          variant='small-00-bold'
-          sx={{ textDecoration: 'underline', color: themeColors.blue200, cursor: 'pointer' }}
+        <MuiLink
+          component={Link}
+          to={'/roadmap'}
+          sx={{
+            textDecoration: 'underline',
+            fontSize: '13px',
+            lineHeight: '18px',
+            fontWeight: 700,
+            color: themeColors.blue200,
+          }}
         >
           View
-        </Typography>
+        </MuiLink>
       </FlexBoxRow>
       <FlexBoxColumn gap={2} minHeight={120}>
-        {isLoading && [0, 1, 2, 3].map((_, index) => <RoadmapCard.Skeleton key={index} />)}
+        {isLoading && [0, 1, 2, 3].map((_, index) => <RoadmapSummary.Skeleton key={index} />)}
         {!isLoading &&
           roadmapStatusesConfig.map((config) => (
             <FlexBoxRow key={config.key} justifyContent={'space-between'} alignItems={'center'}>
@@ -74,7 +82,7 @@ export const RoadmapCard = () => {
   );
 };
 
-RoadmapCard.Skeleton = function RoadmapSkeleton() {
+RoadmapSummary.Skeleton = function RoadmapSkeleton() {
   return (
     <FlexBoxRow justifyContent={'space-between'} alignItems={'center'}>
       <FlexBoxRow sx={{ gap: 4, alignItems: 'center' }}>

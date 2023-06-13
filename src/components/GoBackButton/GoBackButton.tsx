@@ -5,9 +5,10 @@ import { ReactComponent as ChevronLeftIcon } from '../../assets/shared/icon-arro
 
 interface GoBackButtonProps {
   onClickGoBackBtn: () => void;
+  color?: string;
 }
 
-export const GoBackButton = ({ onClickGoBackBtn }: GoBackButtonProps) => {
+export const GoBackButton = ({ onClickGoBackBtn, color }: GoBackButtonProps) => {
   return (
     <FlexBoxRow
       sx={{
@@ -18,10 +19,14 @@ export const GoBackButton = ({ onClickGoBackBtn }: GoBackButtonProps) => {
       }}
       onClick={() => onClickGoBackBtn()}
     >
-      <ChevronLeftIcon style={{ fill: themeColors.blue400 }} />
+      <ChevronLeftIcon style={{ fill: color ? color : themeColors.blue400 }} />
       <Typography
         variant='small-01-bold'
-        sx={{ textTransform: 'capitalize', color: themeColors.greyBlue400, pt: '3px' }}
+        sx={{
+          textTransform: 'capitalize',
+          color: color ? color : themeColors.greyBlue400,
+          pt: '3px',
+        }}
       >
         Go back
       </Typography>

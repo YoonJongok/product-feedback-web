@@ -19,6 +19,7 @@ import { filterFeedbacks } from './ListFeedbacks.helpers';
 import { sortByConfig } from './ListFeedbacks.config';
 import { SortBy } from '../../../store/filters/filters.types';
 import { Link, useNavigate } from 'react-router-dom';
+import AddFeedbackButton from '../../../components/AddFeedbackButton';
 
 export const ListFeedbacks = () => {
   const [selectedSort, setSelectedSort] = useState<SortBy>(sortByConfig[0]);
@@ -111,9 +112,7 @@ export const ListFeedbacks = () => {
             ))}
           </Select>
         </FlexBoxRow>
-        <Button variant='containdPurple' onClick={() => navigate('/add')}>
-          Add Feedback
-        </Button>
+        <AddFeedbackButton />
       </FlexBoxRow>
       {isLoading && [0, 1, 2].map((_, index) => <FeedbackCard.Skeleton key={index} />)}
       {filteredFeedbacks &&
