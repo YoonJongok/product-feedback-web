@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { Comment } from '../../store/feedbacks/feedbacks.types';
 import { useAppDispatch } from '../../store/hooks';
 import { addCommentOnFeedback } from '../../store/feedbacks/feedbacks.slice';
+import { FlexBoxColumn } from '../FlexBox/FlexBoxcolumn';
 
 const charLimit = 250;
 
@@ -49,37 +50,49 @@ export const AddCommentForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)}>
-      <Input
-        {...register('comment', { required: true })}
-        inputProps={{ maxLength: 250 }}
-        disableUnderline
-        fullWidth
-        multiline
-        placeholder='Type your comment here'
-        sx={{
-          minHeight: 80,
-          bgcolor: themeColors.greyBlue100,
-          borderRadius: '5px',
-          px: 5,
-        }}
-        onChange={(e) => handleFormChange(e)}
-      />
-      {errors.comment && (
-        <Typography variant='small-01-regular' color={themeColors.red}>
-          {errors.comment.message}
-        </Typography>
-      )}
+    <FlexBoxColumn
+      sx={{
+        px: '34px',
+        py: '24px',
+        borderRadius: '10px',
+        backgroundColor: themeColors.white,
+      }}
+    >
+      <Typography variant='medium-01-bold' sx={{ mb: 6, color: themeColors.blue300 }}>
+        Add Comment
+      </Typography>
+      <form onSubmit={handleSubmit(handleFormSubmit)}>
+        <Input
+          {...register('comment', { required: true })}
+          inputProps={{ maxLength: 250 }}
+          disableUnderline
+          fullWidth
+          multiline
+          placeholder='Type your comment here'
+          sx={{
+            minHeight: 80,
+            bgcolor: themeColors.greyBlue100,
+            borderRadius: '5px',
+            px: 5,
+          }}
+          onChange={(e) => handleFormChange(e)}
+        />
+        {errors.comment && (
+          <Typography variant='small-01-regular' color={themeColors.red}>
+            {errors.comment.message}
+          </Typography>
+        )}
 
-      <FlexBoxRow sx={{ justifyContent: 'space-between', alignItems: 'center', mt: '16px' }}>
-        <Typography variant='small-01-regular' color={themeColors.blue300}>
-          {coundLimit} Characters left
-        </Typography>
-        <Button type='submit' variant='containdPurple'>
-          post comment
-        </Button>
-      </FlexBoxRow>
-    </form>
+        <FlexBoxRow sx={{ justifyContent: 'space-between', alignItems: 'center', mt: '16px' }}>
+          <Typography variant='small-01-regular' color={themeColors.blue300}>
+            {coundLimit} Characters left
+          </Typography>
+          <Button type='submit' variant='containdPurple'>
+            post comment
+          </Button>
+        </FlexBoxRow>
+      </form>
+    </FlexBoxColumn>
   );
 };
 

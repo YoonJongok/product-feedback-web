@@ -41,6 +41,17 @@ export const FeedbackDetail = () => {
               backgroundColor: themeColors.white,
             }}
           >
+            <Typography variant='medium-01-bold'>
+              {!!feedbackDetail.comments.length ? feedbackDetail.comments.length : 0} Comments
+            </Typography>
+            {!feedbackDetail.comments.length && (
+              <Typography
+                variant='medium-00-regular'
+                sx={{ mt: 4, color: themeColors.greyBlue400 }}
+              >
+                No comments
+              </Typography>
+            )}
             {feedbackDetail.comments.map((comment) => (
               <Comment comment={comment} key={comment.id} />
             ))}
@@ -48,19 +59,7 @@ export const FeedbackDetail = () => {
         </>
       )}
 
-      <FlexBoxColumn
-        sx={{
-          px: '34px',
-          py: '24px',
-          borderRadius: '10px',
-          backgroundColor: themeColors.white,
-        }}
-      >
-        <Typography variant='medium-01-bold' sx={{ mb: 6, color: themeColors.blue300 }}>
-          Add Comment
-        </Typography>
-        <AddCommentForm />
-      </FlexBoxColumn>
+      <AddCommentForm />
     </FlexBoxColumn>
   );
 };
