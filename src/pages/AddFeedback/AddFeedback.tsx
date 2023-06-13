@@ -10,7 +10,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Feedback, categorySchema } from '../../store/feedbacks/feedbacks.types';
 import { useAppDispatch } from '../../store/hooks';
-import { addFeedback } from '../../store/feedbacks/feedbacks.slice';
+import { addFeedback, addNewFeedback } from '../../store/feedbacks/feedbacks.slice';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { GoBackButton } from '../../components/GoBackButton/GoBackButton';
 
@@ -43,7 +43,7 @@ export const AddFeedback = () => {
       status: 'suggestion',
       comments: [],
     };
-    dispatch(addFeedback(newFeedback));
+    dispatch(addNewFeedback(newFeedback));
     navigate('/');
   };
 

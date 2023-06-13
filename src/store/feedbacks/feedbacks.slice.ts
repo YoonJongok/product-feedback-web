@@ -3,7 +3,12 @@ import feedbacksApi from '../../api/feedbacks';
 import { RootState } from '..';
 import { Comment, Feedback, FeedbackState } from './feedbacks.types';
 import { createAppAsyncThunk } from '../hooks';
-import { Add_COMMENT_ON_FEEDBACK, FETCH_FEEDBACKS, FETCH_FEEDBACK_BY_ID } from '../store.types';
+import {
+  ADD_NEW_FEEDBACK,
+  Add_COMMENT_ON_FEEDBACK,
+  FETCH_FEEDBACKS,
+  FETCH_FEEDBACK_BY_ID,
+} from '../store.types';
 
 export const fetchFeedbacks = createAppAsyncThunk(
   FETCH_FEEDBACKS,
@@ -26,8 +31,16 @@ export const fetchFeedbackById = createAppAsyncThunk(
 export const addCommentOnFeedback = createAppAsyncThunk(
   Add_COMMENT_ON_FEEDBACK,
   async (comment: Comment, { dispatch }) => {
-    await feedbacksApi.addComment(comment);
+    await feedbacksApi.addCommentonFeedback(comment);
     return dispatch(fetchFeedbackById(comment.feedbackId));
+  }
+);
+
+export const addNewFeedback = createAppAsyncThunk(
+  ADD_NEW_FEEDBACK,
+  async (feedback: Feedback, { dispatch }) => {
+    await feedbacksApi.addFeedback(feedback);
+    return dispatch(fetchFeedbacks());
   }
 );
 
@@ -57,6 +70,17 @@ export const feedbacksSlice = createSlice({
         state.feedbacks = action.payload as Feedback[];
       })
       .addCase(fetchFeedbacks.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload as string;
+      });
+    builder
+      .addCase(addNewFeedback.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(addNewFeedback.fulfilled, (state) => {
+        state.status = 'succeeded';
+      })
+      .addCase(addNewFeedback.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload as string;
       });

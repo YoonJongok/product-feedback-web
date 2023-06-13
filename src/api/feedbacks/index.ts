@@ -1,9 +1,11 @@
 import { fetchFeedbackById } from './fetchFeedbackById';
 import { fetchFeedbacks } from './fetchFeedbacks';
-import { addComment } from './addComment';
+import { addCommentonFeedback } from './addCommentonFeedback';
+import { addFeedback } from './addFeedback';
 export default {
   fetchFeedbacks,
   fetchFeedbackById,
-  addComment,
+  addCommentonFeedback,
+  addFeedback,
 };
 
