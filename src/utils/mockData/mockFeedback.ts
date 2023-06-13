@@ -75,6 +75,7 @@ export const mockFeedback: Feedback[] = [
         },
         replies: [
           {
+            id: 2,
             content:
               "While waiting for dark mode, there are browser extensions that will also do the job. Search for 'dark theme' followed by your browser. There might be a need to turn off the extension for sites with naturally black backgrounds though.",
             replyingTo: 'hummingbird1',
@@ -85,6 +86,7 @@ export const mockFeedback: Feedback[] = [
             },
           },
           {
+            id: 3,
             content:
               "Good point! Using any kind of style extension is great and can be highly customizable, like the ability to change contrast and brightness. I'd prefer not to use one of such extensions, however, for security and privacy reasons.",
             replyingTo: 'annev1990',
@@ -173,6 +175,7 @@ export const mockFeedback: Feedback[] = [
         },
         replies: [
           {
+            id: 5,
             content:
               "Bumping this. It would be good to have a tab with a feed of people I follow so it's easy to see what challenges they’ve done lately. I learn a lot by reading good developers' code.",
             replyingTo: 'arlen_the_marlin',
@@ -329,6 +332,7 @@ export const mockFeedback: Feedback[] = [
         },
         replies: [
           {
+            id: 1,
             content:
               "Me too! I'd also love to see celebrations at specific points as well. It would help people take a moment to celebrate their achievements!",
             replyingTo: 'arlen_the_marlin',

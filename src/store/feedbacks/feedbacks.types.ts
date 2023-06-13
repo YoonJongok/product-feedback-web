@@ -8,6 +8,7 @@ export const userSchema = z.object({
 });
 
 export const replySchema = z.object({
+  id: z.number(),
   content: z.string(),
   replyingTo: z.string(),
   user: userSchema,
