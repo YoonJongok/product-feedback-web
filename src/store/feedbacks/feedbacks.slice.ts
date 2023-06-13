@@ -1,9 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import feedbacksApi from '../../api/feedbacks';
 import { RootState } from '..';
-import { Feedback, FeedbackState } from './feedbacks.types';
+import { Comment, Feedback, FeedbackState } from './feedbacks.types';
 import { createAppAsyncThunk } from '../hooks';
-import { FETCH_FEEDBACKS, FETCH_FEEDBACK_BY_ID } from '../store.types';
+import { Add_COMMENT_ON_FEEDBACK, FETCH_FEEDBACKS, FETCH_FEEDBACK_BY_ID } from '../store.types';
 
 export const fetchFeedbacks = createAppAsyncThunk(
   FETCH_FEEDBACKS,
@@ -18,8 +18,16 @@ export const fetchFeedbacks = createAppAsyncThunk(
 
 export const fetchFeedbackById = createAppAsyncThunk(
   FETCH_FEEDBACK_BY_ID,
-  (id: number | string) => {
-    return feedbacksApi.fetchFeedbackById(id);
+  async (id: number | string) => {
+    return await feedbacksApi.fetchFeedbackById(id);
+  }
+);
+
+export const addCommentOnFeedback = createAppAsyncThunk(
+  Add_COMMENT_ON_FEEDBACK,
+  async (comment: Comment, { dispatch }) => {
+    await feedbacksApi.addComment(comment);
+    return dispatch(fetchFeedbackById(comment.feedbackId));
   }
 );
 
@@ -39,7 +47,6 @@ export const feedbacksSlice = createSlice({
     },
     clearFeedbacksState: () => initialState,
   },
-  // Enable when api is ready
   extraReducers: (builder) => {
     builder
       .addCase(fetchFeedbacks.pending, (state) => {
@@ -64,6 +71,17 @@ export const feedbacksSlice = createSlice({
       .addCase(fetchFeedbackById.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload as string;
+      });
+    builder
+      .addCase(addCommentOnFeedback.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(addCommentOnFeedback.fulfilled, (state) => {
+        state.status = 'succeeded';
+      })
+      .addCase(addCommentOnFeedback.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
       });
   },
 });

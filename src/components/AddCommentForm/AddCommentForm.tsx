@@ -4,6 +4,7 @@ import { FlexBoxRow } from '../FlexBox/FlexBoxRow';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useParams } from 'react-router-dom';
 
 const charLimit = 250;
 
@@ -14,6 +15,7 @@ const addCommetnFormSchema = z.object({
 type AddCommentForm = z.infer<typeof addCommetnFormSchema>;
 
 export const AddCommentForm = () => {
+  const { id: feedbackId } = useParams();
   const [coundLimit, setCountLimit] = useState(charLimit);
 
   const {

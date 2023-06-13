@@ -19,6 +19,7 @@ export const categorySchema = z.enum(['All', 'UI', 'UX', 'Enhancement', 'Bug', '
 
 export const commentSchema = z.object({
   id: z.number(),
+  feedbackId: z.number(),
   content: z.string(),
   user: userSchema,
   replies: z.array(replySchema).optional(),
