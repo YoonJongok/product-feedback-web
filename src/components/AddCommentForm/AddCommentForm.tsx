@@ -16,7 +16,7 @@ const addCommetnFormSchema = z.object({
   comment: z.string().min(1, { message: 'Comment is required to submit' }),
 });
 
-type AddCommentForm = z.infer<typeof addCommetnFormSchema>;
+type AddCommentFormType = z.infer<typeof addCommetnFormSchema>;
 
 export const AddCommentForm = () => {
   const dispatch = useAppDispatch();
@@ -27,13 +27,13 @@ export const AddCommentForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<AddCommentForm>();
+  } = useForm<AddCommentFormType>();
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setCountLimit(charLimit - e.target.value.length);
   };
 
-  const handleFormSubmit = ({ comment }: AddCommentForm) => {
+  const handleFormSubmit = ({ comment }: AddCommentFormType) => {
     console.log({ comment });
     const newComment: Comment = {
       id: Math.floor(Math.random() * 1000000),

@@ -9,7 +9,7 @@ import { FlexBoxRow } from '../../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../../theme/colors';
 import Comment from '../../components/Comment';
 import { Typography } from '@mui/material';
-import AddCommentForm from '../../components/AddCommentForm';
+import { AddCommentForm } from '../../components/AddCommentForm/AddCommentForm';
 
 export const FeedbackDetail = () => {
   const location = useLocation();

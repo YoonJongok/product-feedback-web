@@ -2,15 +2,16 @@ import { useEffect, useMemo, useState } from 'react';
 import { FlexBoxRow } from '../../../components/FlexBox/FlexBoxRow';
 import { themeColors } from '../../../theme/colors';
 import {
-  Button,
   Link as MuiLink,
   MenuItem,
   Select,
   SelectChangeEvent,
   Typography,
+  Box,
 } from '@mui/material';
 import { ReactComponent as SuggestionIcon } from '../../../assets/suggestions/icon-suggestions.svg';
 import { ReactComponent as CheckIcon } from '../../../assets/shared/icon-check.svg';
+import { ReactComponent as NoFeedbackImg } from '../../../assets/suggestions/illustration-empty.svg';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { fetchFeedbacks, feedbacksSelector } from '../../../store/feedbacks/feedbacks.slice';
 import { FeedbackCard } from '../../../components/FeedbackCard/FeedbackCard';
@@ -18,13 +19,12 @@ import { filtersSelecter, setSortBy } from '../../../store/filters/filters.slice
 import { filterFeedbacks } from './ListFeedbacks.helpers';
 import { sortByConfig } from './ListFeedbacks.config';
 import { SortBy } from '../../../store/filters/filters.types';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AddFeedbackButton from '../../../components/AddFeedbackButton';
+import { FlexBoxColumn } from '../../../components/FlexBox/FlexBoxcolumn';
 
 export const ListFeedbacks = () => {
   const [selectedSort, setSelectedSort] = useState<SortBy>(sortByConfig[0]);
-
-  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
@@ -64,7 +64,7 @@ export const ListFeedbacks = () => {
           <FlexBoxRow sx={{ gap: '18px' }}>
             <SuggestionIcon style={{ fill: themeColors.white }} />
             <Typography variant='medium-02-bold' sx={{ color: themeColors.white }}>
-              5 Suggestions
+              {filteredFeedbacks ? filteredFeedbacks.length : 0} Suggestions
             </Typography>
           </FlexBoxRow>
           <Select
@@ -115,6 +115,30 @@ export const ListFeedbacks = () => {
         <AddFeedbackButton />
       </FlexBoxRow>
       {isLoading && [0, 1, 2].map((_, index) => <FeedbackCard.Skeleton key={index} />)}
+      {filteredFeedbacks && filteredFeedbacks.length === 0 && (
+        <FlexBoxColumn
+          sx={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: themeColors.white,
+            py: '100px',
+            px: '210px',
+            textAlign: 'center',
+          }}
+        >
+          <NoFeedbackImg />
+          <FlexBoxColumn sx={{ gap: 4, my: 8 }}>
+            <Typography variant='medium-02-bold' sx={{ color: themeColors.blue400 }}>
+              There is no feedback yet.
+            </Typography>
+            <Typography variant='medium-00-regular' sx={{ color: themeColors.blue400 }}>
+              Got a suggestion? Found a bug that needs to be squashed? We love hearing about new
+              ideas to improve our app.
+            </Typography>
+          </FlexBoxColumn>
+          <AddFeedbackButton />
+        </FlexBoxColumn>
+      )}
       {filteredFeedbacks &&
         filteredFeedbacks.map((feedback, index) => (
           <MuiLink key={index} component={Link} to={`/${feedback.id}`}>
